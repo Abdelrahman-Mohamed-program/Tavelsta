@@ -1,4 +1,5 @@
-//Error handling middlewares
+//Error handling middlewares : 
+
 const notFound = (req,res,next)=>{
     let error = new Error()
     error.message = "404 Not found, this route is not available. Check the method and path again."

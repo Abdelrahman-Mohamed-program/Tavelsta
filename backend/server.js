@@ -1,14 +1,18 @@
 require("dotenv").config()
 
+//dependencies and modules
 const express = require("express"),
   app = express(),
-  port = process.env.PORT
-
-  
+  port = process.env.PORT;
 
 
-//Routes and middleware config:
-const {notFound,errorHandler} = require("./middlewares/errorHandle")
+const {notFound,errorHandler} = require("./middlewares/errorHandle"),
+  {dbConnection} = require("./config/db")    
+
+
+//Routes, middlewares and config:
+
+dbConnection();
 
 
 app.use(notFound);
