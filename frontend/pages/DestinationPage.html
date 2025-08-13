@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santorini, Greece - Travel System</title>
+    <link rel="stylesheet" href="../styles/DestinationDetails.css">
+    <script src="../js/DestinationPageLogic.js" defer></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">TravelSystem</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="image-gallery">
+                <img src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=1000&h=400&fit=crop"
+                    alt="Pyramids of Giza" class="main-image" id="mainImage">
+
+                <div class="thumbnail-images">
+                    <img src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=160&h=120&fit=crop"
+                        alt="View 1" class="thumbnail active" onclick="changeImage(0)">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=160&h=120&fit=crop"
+                        alt="View 2" class="thumbnail" onclick="changeImage(1)">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=160&h=120&fit=crop"
+                        alt="View 3" class="thumbnail" onclick="changeImage(2)">
+                </div>
+            </div>
+
+            <div class="destination-header">
+                <div class="destination-info">
+                    <h1>Pyramids of Giza, Egypt</h1>
+                    <div class="rating">★★★★★ 4.9 (3,247 reviews)</div>
+                    <div class="location">📍 Giza, Cairo, Egypt</div>
+                </div>
+                <div class="price-box">
+                    <div class="price">$120</div>
+                    <div class="price-unit">per night</div>
+                </div>
+            </div>
+
+            <div class="description">
+                <p>Discover the wonders of ancient Egypt at the iconic Pyramids of Giza. Home to the Great Pyramid, one
+                    of the Seven Wonders of the Ancient World, and the mysterious Sphinx. Experience 4,500 years of
+                    history in this incredible archaeological site just outside Cairo.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="main-info">
+                    <div class="highlights">
+                        <h2 class="section-title">Highlights</h2>
+                        <ul class="highlight-list">
+                            <li>Great Pyramid of Khufu - Ancient Wonder</li>
+                            <li> Great Sphinx of Giza - Mysterious guardian</li>
+                            <li> Pyramid of Khafre and Menkaure</li>
+                            <li> Camel rides around the pyramids</li>
+                            <li> Spectacular sunrise and sunset views</li>
+                        </ul>
+                    </div>
+
+                    <div class="travel-tips">
+                        <h2 class="section-title">Travel Tips</h2>
+                        <ul class="tips-list">
+                            <li>• Best time to visit: October to April</li>
+                            <li>• Visit early morning to avoid crowds</li>
+                            <li>• Bring sunscreen and comfortable shoes</li>
+                            <li>• Hire an official tour guide</li>
+                            <li>• Don't forget your camera for photos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <h3 class="section-title">Package Details</h3>
+
+                    <div class="package-item">
+                        <span>Duration:</span>
+                        <span>3 Days / 2 Nights</span>
+                    </div>
+                    <div class="package-item">
+                        <span>Hotel:</span>
+                        <span>4-Star</span>
+                    </div>
+                    <div class="package-item">
+                        <span>Meals:</span>
+                        <span>Breakfast</span>
+                    </div>
+                    <div class="package-item">
+                        <span>Transport:</span>
+                        <span>Airport Transfer</span>
+                    </div>
+                    <div class="package-item">
+                        <span>Group Size:</span>
+                        <span>2-10 People</span>
+                    </div>
+
+                    <button class="book-btn" onclick="bookTrip()">📅 Book Now</button>
+                </div>
+
+                <div class="reviews">
+                    <h2 class="section-title">Customer Reviews</h2>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">Ahmed Hassan</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <p>"Absolutely amazing experience! Standing in front of the Great Pyramid was mind-blowing. Our
+                            guide was very knowledgeable about Egyptian history."</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">Lisa Anderson</span>
+                            <span class="review-rating">★★★★★</span>
+                        </div>
+                        <p>"A bucket list destination that exceeded expectations! The Sphinx is incredible up close.
+                            Great organization and the camel ride was fun."</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">Omar Mahmoud</span>
+                            <span class="review-rating">★★★★☆</span>
+                        </div>
+                        <p>"Fascinating historical site with incredible ancient architecture. Can get crowded during
+                            peak hours but the experience is unforgettable."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("zizzoo");
+    </script>
+</body>
+
+</html>
