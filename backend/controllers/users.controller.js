@@ -22,7 +22,7 @@ res.status(201).json({
 }
 
 
-const login = (req,res)=>{
+const login = (req,res,next)=>{
  try {
    const accessToken = genearteToken(req.user);
    res.status(200).json(
@@ -35,13 +35,18 @@ const login = (req,res)=>{
  }
 }
 
-const index = async (req,res)=>{
- const users = await userModel.find()
+const index = async (req,res,next)=>{
+    try {
+         const users = await userModel.find()
 
  res.status(200).json({
     method:"GET",
     data: users
  })
+    } catch (error) {
+        next(error)
+    }
+
 }
 
 const getCurrentUser = async (req,res,next)=>{
@@ -61,6 +66,99 @@ const getCurrentUser = async (req,res,next)=>{
     }
 }
 
+const blockUser = async (req,res,next)=>{
+    try {
+    if (!req.params.id||req.params.id==req.user.id) {
+      return res.status(400).json({
+        method:"PATCH",
+        error:"Bad request, invalid id"
+       })   
+    }
+
+    const user =  await userModel.findByIdAndUpdate(req.params.id,{blocked:true})
+
+    if (!user) {
+       return res.status(400).json({
+        method:"PATCH",
+        error:"Bad request, user is not found"
+        })
+    }
+
+    res.status(200).json({
+       method:"PATCH",
+       message:"user blocked successfuly"
+    })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+const unblockUser = async (req,res,next)=>{
+    try {
+    if (!req.params.id||req.params.id==req.user.id) {
+      return res.status(400).json({
+        method:"PATCH",
+        error:"Bad request, invalid id"
+       })   
+    }
+
+ const user =  await userModel.findByIdAndUpdate(req.params.id,{blocked:false})
+
+    if (!user) {
+       return res.status(400).json({
+        method:"PATCH",
+        error:"Bad request, user is not found"
+        })
+    }
+
+    res.status(200).json({
+       method:"PATCH",
+       message:"user unblocked successfuly"
+    })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
+const changePassword = async (req,res,next)=>{
+try {
+    console.log("safdjp");
+    
+    if (!req.body?.currentPassword||!req.body.newPassword) {
+      return  res.status(400).json({
+         method:"PATCH",
+         error:"Bad request",
+         message:"Current and new Password are required"
+        })
+    }
+    const user = await userModel.findById(req.user.id);
+    const passwordCheck = await bcrypt.compare(req.body.currentPassword,user.password);
+    
+   if (!passwordCheck) {
+    return res.status(403).json({
+      method: "PATCH",
+      error: "Forbidden",
+      message:"Old password is incorrect"
+    });
+     }
+     const hashedPassword = await bcrypt.hash(req.body.newPassword,10) 
+    await userModel.findByIdAndUpdate(req.user.id,{
+        password:hashedPassword
+     })
+     
+    res.status(200).json({
+         method: "PATCH",
+         message:"password updated succesfully"
+    })
+
+} catch (error) {
+    next(error)
+}
+}
+
+
 module.exports = { 
-    signup,login,index,getCurrentUser
+    signup,login,index,getCurrentUser,blockUser,unblockUser,changePassword
 }

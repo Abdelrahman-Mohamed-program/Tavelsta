@@ -8,15 +8,17 @@ const tokenAuth = async (req,res,next)=>{
    
     if (!authorization) {
        return res.status(401).json({
-        error:"Token is required in every request"
+        error:"Unauthorized",
+        message:"Token is required in every request"
        })
     }
 
    const token = authorization.split(" ")[1];
    jwt.verify(token,process.env.TOKEN_SECRET,(err,payload)=>{
   if (err) {
-      return res.status(401).json({
-        error:err.message
+      return res.status(403).json({
+        error:"Forbidden",
+        message:err.message
          })
         }
         req.user = payload;

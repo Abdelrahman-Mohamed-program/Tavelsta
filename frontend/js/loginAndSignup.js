@@ -29,7 +29,7 @@ if (token) {
   console.log(token);
   Swal.fire('Error', 'user already regestered log out first', 'error');
   setTimeout(() => {
-    window.location.href = 'index.html';
+    window.location.href = 'home.html';
   }, 1000);
   
 }

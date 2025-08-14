@@ -3,26 +3,29 @@ const bcrypt = require("bcrypt")
 
 const loginCheck = async (req,res,next)=>{      
   console.log("came here");
-  
-      if (!req.body.email) {
+     
+      if (!req.body?.email) {
       return res.status(400).json({
-        method : "GET",
-        error:"Bad request, EMAIL IS REQUIRED",
+        method : "POST",
+        error:"Bad request",
+        message:"EMAIL IS REQUIRED"
        })
     }
 
     if (!req.body.password) {
         return res.status(400).json({
-        method : "GET",
-        error:"Bad request, password IS REQUIRED",
+        method : "POST",
+        error:"Bad request",
+        message:"password IS REQUIRED"
        })
     }
 
 const user = await userModel.findOne({ email: req.body.email });
   if (!user) {
     return res.status(401).json({
-      method: "GET",
-      error: "Unauthorized, user is not registered",
+      method: "POST",
+      error: "Unauthorized",
+      message:"user is not registered"
     });
   }
 
@@ -30,8 +33,9 @@ const user = await userModel.findOne({ email: req.body.email });
   
   if (!passwordCheck) {
      return res.status(401).json({
-      method: "GET",
-      error: "Unauthorized, Wrong passwrod",
+      method: "POST",
+      error: "Unauthorized",
+      message:"Wrong passwrod"
     });
   }
   req.user = user
