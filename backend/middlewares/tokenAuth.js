@@ -2,9 +2,7 @@ const jwt = require("jsonwebtoken")
 const tokenAuth = async (req,res,next)=>{
     try {
         if (req.url=="/api/v1/users/signup"||req.url=="/api/v1/users/login" ) {
- 
-            
-           return next()
+          return next()
         }
     const authorization = req.headers.authorization
    
@@ -18,7 +16,7 @@ const tokenAuth = async (req,res,next)=>{
    jwt.verify(token,process.env.TOKEN_SECRET,(err,payload)=>{
   if (err) {
       return res.status(401).json({
-        error:"Token has changedInvalid or expired token"
+        error:err.message
          })
         }
         req.user = payload;

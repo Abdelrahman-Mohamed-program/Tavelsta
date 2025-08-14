@@ -44,8 +44,23 @@ const index = async (req,res)=>{
  })
 }
 
-
+const getCurrentUser = async (req,res,next)=>{
+    try {
+    const user = await userModel.findById(req.user.id)
+    res.status(200).json({
+        method:"GET",
+        message:"User found",
+        data:{
+            id:user.id,
+            username:user.username,
+            bookings:user.bookings
+        }
+    })
+    } catch (error) {
+        next(error)
+    }
+}
 
 module.exports = { 
-    signup,login,index
+    signup,login,index,getCurrentUser
 }

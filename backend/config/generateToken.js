@@ -13,9 +13,9 @@ function genearteToken (user){
         username :user.username,
         isAdmin,
     }
-     //use sign to create new token
+
     const token =  jwt.sign(payload,secret,{
-        expiresIn:"1m"
+        expiresIn:"30d"
     })
     return token
 }catch(err){
