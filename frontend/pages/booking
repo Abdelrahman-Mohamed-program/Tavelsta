@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Trip Booking</title>
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <p class="breadcrumb">Europe > England</p>
+            <h1>London</h1>
+        </div>
+
+        <div class="content">
+            <!-- Left Booking Card -->
+            <div class="booking-card">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.tfCJ7apVR5-0QIvr8t2GxwHaLG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pocket London">
+                <p class="shop">SHOP</p>
+                <h2>Pocket London</h2>
+                <p class="price">$14.99</p>
+                <button>Shop Book</button>
+            </div>
+
+            <!-- Right Hero Image -->
+            <div class="hero">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.TrtYdfXYSFhEvAnYluwgxwHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="London Bridge">
+                <!-- Right side -->
+    <div class="right">
+        <p class="year">2024 / POCKET</p>
+        <h1>Pocket London</h1>
+        <p class="author">AUTHOR: JADE BREMNER</p>
+
+        <div class="options">
+            <div class="option selected">BOOK <span>LE 735.00 EGP</span></div>
+            <div class="option">EBOOK <span>LE 390.00 EGP</span></div>
+            <div class="option">BOOK + EBOOK <span>LE 1,079.00 EGP</span></div>
+        </div>
+
+        <div class="subscribe">
+            SUBSCRIBE FOR PERKS! <span>LE 147.00 EGP/MONTH</span>
+        </div>
+
+        <div class="buttons">
+            <button class="add-cart">+ ADD TO CART</button>
+            <button class="buy-now">BUY NOW</button>
+            <button class="apple-pay">Pay with Pay</button>
+        </div>
+
+        <div class="payments">
+            <img src="payments.png" alt="Payment Options">
+        </div>
+
+        <div class="overview">
+            <h3>OVERVIEW</h3>
+            <p>
+                Lonely Planet's local travel experts reveal all you need to know to plan an unforgettable trip to London.
+                Get a snap of Big Ben, view art at the Tate Modern, see Sky Garden's 360° views, with our Pocket travel guide
+                that's packed with 'perfect trip' itineraries, fun walking tours, and insider tips so you can discover twice
+                the city in half the time.
+            </p>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
