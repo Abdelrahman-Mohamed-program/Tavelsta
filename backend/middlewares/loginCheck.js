@@ -1,4 +1,5 @@
 const userModel = require("../models/users")
+const userModel = require("../models/users")
 const bcrypt = require("bcrypt")
 
 const loginCheck = async (req,res,next)=>{      
@@ -22,10 +23,9 @@ try {
        })
     }
 
+const user = await userModel.findOne({ email: req.body.email });
 
-    const user = await userModel.findOne({ email: req.body.email }).select("+password");
-  
-    if (!user) {
+  if (!user) {
     return res.status(401).json({
       method: "POST",
       error: "Unauthorized",

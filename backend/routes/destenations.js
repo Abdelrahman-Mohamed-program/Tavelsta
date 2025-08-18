@@ -1,9 +1,9 @@
 const  router  = require("express").Router()
 
-const {index,create, edit,destroy,show} = require("../controllers/destenations.controller")
+const {index,create, edit,destroy,show} = require("../controllers/destinations.controller")
 
 router.use((req,res,next)=>{
-console.log("request came to destenations route");
+console.log("request came to destinations route");
 
 
     next()
