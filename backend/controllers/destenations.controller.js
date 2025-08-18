@@ -53,12 +53,11 @@ if (req.body?.travlingTips && !Array.isArray(req.body.travlingTips)) {
   req.body.travlingTips = [req.body.travlingTips];
 }
 
-// Destructure out array fields
 const { imgs, reviews, travlingTips, ...otherFields } = req.body;
 
-// Build update object without conflict
+
 const update = {
-  ...otherFields,  // title, description, etc.
+  ...otherFields,  
   $push: {
     ...(imgs ? { imgs: { $each: imgs } } : {}),
     ...(reviews ? { reviews: { $each: reviews } } : {}),

@@ -32,7 +32,7 @@ if (req.method=="OPTIONS") {
 })
 
 app.use(express.json());
-app.use(tokenAuth);
+// app.use(tokenAuth);
 
 const usersRouter = require("./routes/users")
 const destenationsRouter = require("./routes/destenations")

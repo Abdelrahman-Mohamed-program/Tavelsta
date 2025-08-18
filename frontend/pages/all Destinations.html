@@ -4,99 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unforgettable Cultural Experiences</title>
-    <link rel="stylesheet" href="destination.css">
+    <link rel="stylesheet" href="../styles/all destinations.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
 
-<h1 class="title">Unforgettable cultural experiences</h1>
-
-<div class="card-container">
-
-    <!-- Card 1 -->
-    <div class="card">
-        <img src="https://footprints-tours.com/wp-content/uploads/2018/12/Romantic-London-1024x768.jpg" alt="LONDON">
-        <div class="tag">   </div>
-        <h3>LONDON</h3>
-        <p>1 day · Skip the line · Optional audio guide</p>
-        <p class="certified">✔ Certified by GetYourGuide</p>
-        <div class="rating">⭐⭐⭐⭐⭐ 4.9 (3,477)</div>
-        <p class="price">From <strong>£1,960</strong> per person</p>
+ </div>
+<nav>
+  <div class="nav__header">
+    <div class="nav__logo">
+      <a href="#" class="logo">Travlesta</a>
     </div>
-
-    <!-- Card 2 -->
-    <div class="card">
-        <img src="https://pstravel.pl/wp-content/uploads/2021/12/paris-top1-1-25.jpg" alt="PARIS">
-        <div class="tag"></div>
-        <h3>PARIS</h3>
-        <p>10 hours · Skip the line · Pickup available</p>
-        <div class="rating">⭐⭐⭐⭐ 4.7 (2,123)</div>
-        <p class="price">From <strong>£4,975</strong> per person</p>
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
     </div>
+  </div>
+  <ul class="nav__links" id="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="all Destinations.html">DESTINATIONS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="login.html">LOGIN</a></li>
+  </ul>
+  <div class="nav__btns">
+    <a href="login and signup.html" class="btn">Book Now!</a>
+  </div>
+</nav>
 
-    <!-- Card 3 -->
-    <div class="card">
-        <img src="https://cdn.getyourguide.com/img/tour/64944f65289ef.jpeg/146.jpg  " alt="DUBAI">
-        <div class="tag"></div>
-        <h3>DUBAI</h3>
-        <p>5 hours</p>
-        <div class="rating">⭐⭐⭐⭐ 4.6 (1,528)</div>
-        <p class="price old">From £4,774</p>
-        <p class="price">£4,297 per person</p>
-    </div>
+<!-- MODERN HEADER -->
 
-    <!-- Card 4 -->
-    <div class="card">
-        <img src="https://i.pinimg.com/originals/bc/3a/ca/bc3acabb9409c889e21cfb38a5fdb9a9.jpg" alt="MAIAMI">
-        <div class="tag"></div>
-        <h3>MAIAMI</h3>
-        <p>8 hours · Small group</p>
-        <span class="sell-out">Likely to sell out</span>
-        <div class="rating">⭐⭐⭐⭐⭐ 4.9 (175)</div>
-        <p class="price">From <strong>£9,307</strong> per person</p>
-    </div>
+<div class="card-container" id="cards-container"></div>
 
-    <!-- Card 5 -->
-    <div class="card">
-        <img src="https://tse4.mm.bing.net/th/id/OIP.xHRrbk9fp8E3ixh-jbeCEwHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="BARCELONA">
-        <div class="tag"></div>
-        <h3>BARCELONA</h3>
-        <p>2.5 hours</p>
-        <span class="sell-out">Likely to sell out</span>
-        <div class="rating">⭐⭐⭐⭐ 4.6 (479)</div>
-        <p class="price">From <strong>£1,360</strong> per person</p>
-    </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
 
-    <!-- Card 6 -->
-    <div class="card">
-        <img src="https://www.gpsmycity.com/img/gd_cover/1953.jpg" alt="BERLIN">
-        <div class="tag"></div>
-        <h3>BERLIN</h3>
-        <p>1.5 hours · Small group</p>
-        <div class="rating">⭐⭐⭐⭐ 4.6 (203)</div>
-        <p class="price">From <strong>£1,960</strong> per person</p>
-    </div>
+menuBtn.addEventListener("click", (e) => {
+  navLinks.classList.toggle("open");
 
-    <!-- Card 7 -->
-    <div class="card">
-        <img src="https://th.bing.com/th/id/R.6b04e0e615cc8a1d94bb33ecaae73ff3?rik=GAAscmtmfazPsQ&riu=http%3a%2f%2fimages.trvl-media.com%2fmedia%2fcontent%2fshared%2fimages%2ftravelguides%2fdestination%2f179899%2fRome-100628.jpg&ehk=qlWSUSw5r9xd9vK1MJXRm2rzCHA%2foAd5efP%2f2JaSqq0%3d&risl=&pid=ImgRaw&r=0" alt="ROME">
-        <div class="tag"></div>
-        <h3>ROME</h3>
-        <p>1.5 - 3 hours</p>
-        <div class="rating">⭐⭐⭐⭐⭐ 4.9 (231)</div>
-        <p class="price">From <strong>£8,780</strong> per person</p>
-    </div>
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+});
 
-    <!-- Card 8 -->
-    <div class="card">
-        <img src="https://www.timeoutdoha.com/cloud/timeoutdoha/2021/08/17/hong_kong_guide_1_base.jpg" alt="HONG KONG">
-        <div class="tag"></div>
-        <h3>HONG KONG</h3>
-        <p>2.5 hours · Small group</p>
-        <div class="rating">⭐⭐⭐⭐ 4.7 (58)</div>
-        <p class="price">From <strong>£4,975</strong> per person</p>
-    </div>
+navLinks.addEventListener("click", (e) => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+});
+</script>
+<script>
+async function loadDestinations() {
+  try {
+    const res = await axios.get("http://localhost:2005/api/v1/destenations");
+    const destinations = Array.isArray(res.data.data) ? res.data.data : [res.data.data];
+    const container = document.getElementById("cards-container");
+    container.innerHTML = "";
 
-</div>
+    destinations.forEach(dest => {
+      const card = document.createElement("div");
+      card.classList.add("card");
 
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${dest.imgs?.[0] || 'https://via.placeholder.com/300'}" alt="${dest.title}">
+        </div>
+        <div class="card-content">
+          <div class="tag">${dest.type || ""}</div>
+          <h3>${dest.title}</h3>
+          <p class="desc">${dest.desc || ""}</p>
+          <div class="rating">⭐ ${dest.rating?.toFixed(1) || 0}</div>
+          <div class="price">From £${dest.pricePerNight} per night</div>
+          <button class="book-btn" onclick="goToDestination('${dest._id}')">Book Now</button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+  }
+}
+
+function goToDestination(id) {
+  window.location.href = `/destination.html?id=${id}`;
+}
+
+loadDestinations();
+</script>
 </body>
 </html>
