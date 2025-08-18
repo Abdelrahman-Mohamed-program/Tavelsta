@@ -1,0 +1,77 @@
+.profile {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 1rem;
+}
+
+.profile h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.profile__account form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.profile__account input {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.trip-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.trip-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fff;
+}
+
+.trip-card h3 {
+    margin: 0.2rem 0;
+    color: #444;
+}
+
+.review-box {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.review-box textarea {
+    resize: vertical;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    background: #0077cc;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #005fa3;
+}
+
+.btn--danger {
+    background: #cc0000;
+}
+
+.btn--danger:hover {
+    background: #a30000;
+}
