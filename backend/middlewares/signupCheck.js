@@ -1,19 +1,11 @@
-const userModel = require("../models/user")
+const userModel = require("../models/users")
 
 const emailCheck = async (req,res,next)=>{    
-      if (!req.body||!req.body.email) {
+      if (!req.body?.email) {
       return res.status(400).json({
         method : "POST",
         error:"Bad request",
         message:"EMAIL IS REQUIRED"
-       })
-    }
-   
-    if (!req.body.username) {
-      return res.status(400).json({
-        method : "POST",
-        error:"Bad request",
-        message:"username IS REQUIRED"
        })
     }
 

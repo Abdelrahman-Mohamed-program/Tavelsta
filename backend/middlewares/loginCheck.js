@@ -1,14 +1,16 @@
-const userModel = require("../models/user")
+const userModel = require("../models/users")
 const bcrypt = require("bcrypt")
 
 const loginCheck = async (req,res,next)=>{      
-  console.log("came here");
-     
-      if (!req.body?.email) {
+
+try {
+  
+   
+    if (!req.body?.email) {
       return res.status(400).json({
         method : "POST",
         error:"Bad request",
-        message:"EMAIL IS REQUIRED"
+        message:"Email IS REQUIRED"
        })
     }
 
@@ -20,14 +22,17 @@ const loginCheck = async (req,res,next)=>{
        })
     }
 
-const user = await userModel.findOne({ email: req.body.email });
-  if (!user) {
+
+    const user = await userModel.findOne({ email: req.body.email }).select("+password");
+  
+    if (!user) {
     return res.status(401).json({
       method: "POST",
       error: "Unauthorized",
       message:"user is not registered"
     });
   }
+
 
   const passwordCheck = await bcrypt.compare(req.body.password,user.password)
   
@@ -40,6 +45,9 @@ const user = await userModel.findOne({ email: req.body.email });
   }
   req.user = user
     next()
+} catch (error) {
+  next(error)
+}     
 }
 
 

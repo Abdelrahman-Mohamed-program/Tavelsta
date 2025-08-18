@@ -2,46 +2,80 @@ const mongoose = require("mongoose")
 
 const destenationsSchema =  mongoose.Schema({
 imgs:{
-type:Array,
+type: [{
+    type: String,
+    match: [/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,"invalid url"]
+  }],
 required:true,
-default:[]
+ validate:{
+        validator:function(value){
+            if(!Array.isArray(value)||value.length<=0){
+                return false
+            }
+            return true
+        }
+        ,
+        message:"At least include one img"
+    }
 },
 title:{
     type:String,
     required:true,
-    default:null
 },
 desc:{
     type:String,
     required:true,
-    default:null
 },
 pricePerNight:{
     type:Number,
     required:true,
-    default:0
+    min:0
 },
 reviews:{
-    type:Array,
-    required:true,
-    default:[]
+    type:[String],
+    default:null,
+    validate:{
+        validator:function(value){
+            if((value&&!Array.isArray(value))||(value&&value.length<=0)){
+                return false
+            }
+            return true
+        }
+        ,
+        message:"At least include one review"
+    }
 },
 type:{
     type:String,
     required:true,
-    default:null
+    lowercase: true,
+    enum:{
+        values:["cultural","Historical","beach","city"],
+        message:"{VALUE} is not a valid type"
+    }
 },
 rating:{
     type:Number,
-    required:true,
+    min:0,
+    max:5,
     default:0
 },
 travlingTips:{
-    type:Array,
+    type:[String],
     required:true,
-    default:[]
+    validate:{
+        validator:function(value){
+            if(!Array.isArray(value)||value.length<=0){
+                return false
+            }
+            return true
+        }
+        ,
+        message:"At least include one travling tip"
+    }
 }
 })
+/** @type {import('mongoose').Model<any>} */
 
 const destenationsModel = mongoose.model("Destenation",destenationsSchema);
 

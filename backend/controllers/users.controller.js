@@ -1,9 +1,9 @@
 /** @type {import('mongoose').Model<any>} */
-const userModel = require("../models/user")
+const userModel = require("../models/users")
 const genearteToken = require("../config/generateToken")
 const bcrypt = require("bcrypt")
 
-const  signup = async (req,res,next)=>{
+const  signup = async (req,res,next)=>{ 
 const hashedPassword =  await bcrypt.hash(req.body.password,10)
  try {
  const newUser =  new userModel({
@@ -11,12 +11,17 @@ const hashedPassword =  await bcrypt.hash(req.body.password,10)
     email : req.body.email,
     password : hashedPassword
  })
+
 await newUser.save();
+
 res.status(201).json({
     method:"POST"
     ,message:"User created succesfully"
 })
     } catch (error) {
+        if (error.name=="ValidationError") {
+            error.status = 400
+        }
         next(error)
     }
 }
@@ -68,12 +73,13 @@ const getCurrentUser = async (req,res,next)=>{
 
 const blockUser = async (req,res,next)=>{
     try {
-    if (!req.params.id||req.params.id==req.user.id) {
+    if (!isValidObjectId(req.params.id)||req.params.id==req.user.id) {
       return res.status(400).json({
         method:"PATCH",
         error:"Bad request, invalid id"
        })   
     }
+   
 
     const user =  await userModel.findByIdAndUpdate(req.params.id,{blocked:true})
 
@@ -96,7 +102,7 @@ const blockUser = async (req,res,next)=>{
 
 const unblockUser = async (req,res,next)=>{
     try {
-    if (!req.params.id||req.params.id==req.user.id) {
+    if (!isValidObjectId(req.params.id)) {
       return res.status(400).json({
         method:"PATCH",
         error:"Bad request, invalid id"
@@ -124,7 +130,6 @@ const unblockUser = async (req,res,next)=>{
 
 const changePassword = async (req,res,next)=>{
 try {
-    console.log("safdjp");
     
     if (!req.body?.currentPassword||!req.body.newPassword) {
       return  res.status(400).json({
