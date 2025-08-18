@@ -1,31 +1,51 @@
 // Dummy data for testing
-const destinationData = {
-  id: 2,
-  img: [
-    "happy-couple-taking-selfie-pic-260nw-2390447961.webp",
-    "nepal-everest-base-camp-everest-travel-photo-20190128094442660-main-image.jpg"
-  ],
-  title: "Cairo, Egypt",
-  desc: "A city rich in ancient history, home to the Great Pyramids, the Sphinx, and the Nile River.",
-  pricePerNight: 850,
-  reviews: [
-    "The pyramids are breathtaking!",
-    "Crowded but worth every moment."
-  ],
-  type: "Historical",
-  rating: 4.6,
-  travlingTips: "Hire a local guide for the best experience and visit early to avoid crowds."
-};
+// Get the query parameters from the URL
+const params = new URLSearchParams(window.location.search);
+
+// Retrieve the 'id'
+const id = params.get('id');
+
+console.log('Received ID:', id);
+let destinationData = {}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Your existing code here
+axios.get(`http://localhost:2005/api/v1/destinations/${id}`)
+.then(res=>
+  res.data
+).then(data=>{
+  console.log(data );
+ destinationData = data.destination 
+ renderDestination(destinationData);
+}).catch(err=>{
+  console.log(err);
+  
+})
+});
+
+
+const bookNowBtn = document.getElementById("bookNowBtn");
+  if (bookNowBtn) {
+    bookNowBtn.addEventListener("click", () => {
+      alert("Book");
+      ;
+    });
+  }
+
 
 function renderDestination(data) {
+
   document.getElementById("destinationTitle").innerText = data.title;
 
   const mainImage = document.getElementById("mainImage");
   const thumbnailsContainer = document.getElementById("thumbnails");
   thumbnailsContainer.innerHTML = "";
-  mainImage.src = data.img[0];
 
-  data.img.forEach((src, index) => {
+  
+  mainImage.src = data.imgs[0];
+
+  data.imgs.forEach((src, index) => {
     const img = document.createElement("img");
     img.src = src;
     img.classList.add("thumbnail");
@@ -51,6 +71,13 @@ function renderDestination(data) {
 
   document.getElementById("tips").innerText = data.travlingTips;
 
+  const tipsContainer = document.getElementById("tips");
+    data.travlingTips.forEach(review => {
+    const div = document.createElement("div");
+    div.classList.add("review-item");
+    div.innerHTML = `<p>"${review}"</p>`;
+    tipsContainer.appendChild(div);
+  });
   const reviewsContainer = document.getElementById("reviews");
   reviewsContainer.innerHTML = "";
   data.reviews.forEach(review => {
@@ -61,18 +88,7 @@ function renderDestination(data) {
   });
 }
 
-renderDestination(destinationData);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const bookNowBtn = document.getElementById("bookNowBtn");
-
-  if (bookNowBtn) {
-    bookNowBtn.addEventListener("click", () => {
-      alert("Book");
-      ;
-    });
-  }
-});
 
 
 // fetch("http://localhost:2005/api/v1/destenations/68a2e5f26c6c18a8a1668993")

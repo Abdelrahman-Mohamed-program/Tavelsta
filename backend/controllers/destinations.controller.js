@@ -17,13 +17,13 @@ res.status(200).json({
 
 const create = async (req,res,next)=>{
     try {
-       const destenation = await destinationsModel(req.body);
+       const destination = await destinationsModel(req.body);
        
-      await destenation.save()
+      await destination.save()
 
       res.status(201).json({
         method:"POST",
-        message:"New destenation added"
+        message:"New destination added"
       })
     } catch (error) {
       if (error.name=="ValidationError") {
@@ -65,21 +65,21 @@ const update = {
   }
 };
 
-const destenation = await destinationsModel.findByIdAndUpdate(
+const destination = await destinationsModel.findByIdAndUpdate(
   req.params.id,
   update,
   { runValidators: true }
 );
 
-       if (!destenation) {
+       if (!destination) {
        return res.status(400).json({
           error:"Bad request",
-          message:"No Destenation with this id"
+          message:"No destination with this id"
         })
        }
       res.status(200).json({
         method:"PUT",
-        message:"Destenation updated succesfully"
+        message:"Destination updated succesfully"
       })
     } catch (error) {
       if (error.name=="ValidationError") {
@@ -98,17 +98,17 @@ const show = async(req,res,next)=>{
             })
         }
 
-        const destenation = await destinationsModel.findById(req.params.id);
+        const destination = await destinationsModel.findById(req.params.id);
 
-        if (!destenation) {
+        if (!destination) {
        return res.status(400).json({
           error:"Bad request",
-          message:"No Destenation with this id"
+          message:"No destination with this id"
         })
        }
            res.status(200).json({
             method:"GET",
-            data:destenation
+            destination
         })
 
   } catch (error) {
@@ -125,18 +125,18 @@ const destroy =async (req,res,next)=>{
             })
         }
 
-       const destenation = await destinationsModel.findByIdAndDelete(req.params.id);
+       const destination = await destinationsModel.findByIdAndDelete(req.params.id);
        
-       if (!destenation) {
+       if (!destination) {
        return res.status(400).json({
           error:"Bad request",
-          message:"No Destenation with this id"
+          message:"No destination with this id"
         })
        }
 
       res.status(200).json({
         method:"DELETE",
-        message:"Destenation deleted succesfully"
+        message:"Destination deleted succesfully"
       })
     } catch (error) {
         next(error)

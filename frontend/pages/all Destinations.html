@@ -55,7 +55,7 @@ navLinks.addEventListener("click", (e) => {
 <script>
 async function loadDestinations() {
   try {
-    const res = await axios.get("http://localhost:2005/api/v1/destenations");
+    const res = await axios.get("http://localhost:2005/api/v1/destinations/");
     const destinations = Array.isArray(res.data.data) ? res.data.data : [res.data.data];
     const container = document.getElementById("cards-container");
     container.innerHTML = "";
@@ -86,7 +86,10 @@ async function loadDestinations() {
 }
 
 function goToDestination(id) {
-  window.location.href = `DestinationPage.html`;
+
+  
+  // Navigate to DestinationPage.html and pass the id as a query parameter
+  window.location.href = `DestinationPage.html?id=${encodeURIComponent(id)}`;
 }
 
 loadDestinations();

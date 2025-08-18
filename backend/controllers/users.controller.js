@@ -46,7 +46,7 @@ const index = async (req,res,next)=>{
 
  res.status(200).json({
     method:"GET",
-    data: users
+     users
  })
     } catch (error) {
         next(error)
@@ -60,7 +60,7 @@ const getCurrentUser = async (req,res,next)=>{
     res.status(200).json({
         method:"GET",
         message:"User found",
-        data:{
+        user:{
             id:user.id,
             username:user.username,
             bookings:user.bookings
