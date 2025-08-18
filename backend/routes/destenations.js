@@ -12,9 +12,9 @@ router.get("/",index)
 
 router.post("/add",create)
 
-router.put("/:id",edit)
+router.put("/update/:id",edit)
 
 router.get("/:id",show)
 
-router.delete("/:id",destroy);
+router.delete("/delete/:id",destroy);
 module.exports = router

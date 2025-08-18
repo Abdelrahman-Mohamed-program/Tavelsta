@@ -32,14 +32,14 @@ if (req.method=="OPTIONS") {
 })
 
 app.use(express.json());
-// app.use(tokenAuth);
+app.use(tokenAuth);
 
 const usersRouter = require("./routes/users")
 const destenationsRouter = require("./routes/destenations")
 
 app.use("/api/v1/destenations",destenationsRouter);
 app.use("/api/v1/users",usersRouter);
-http://localhost:2005/api/v1/destenations
+// http://localhost:2005/api/v1/
 
 
 

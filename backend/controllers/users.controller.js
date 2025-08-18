@@ -163,7 +163,33 @@ try {
 }
 }
 
+const update = async (req,res,next)=>{
+try {
+
+    if (req.body?.password||req.body.blocked) {
+      return  res.status(403).json({
+            error:"forbidden",
+            message:"Cannot change these data"
+        })
+    }
+
+    const user = await userModel.findByIdAndUpdate(req.user.id,req.body,{
+        runValidators: true 
+    });
+
+     
+    res.status(200).json({
+         method: "PATCH",
+         message:"user updated succesfully"
+    })
+
+} catch (error) {
+    next(error)
+}
+}
+
+
 
 module.exports = { 
-    signup,login,index,getCurrentUser,blockUser,unblockUser,changePassword
+    signup,login,index,getCurrentUser,blockUser,unblockUser,changePassword,update
 }

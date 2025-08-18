@@ -68,7 +68,7 @@ const update = {
 const destenation = await destenationsModel.findByIdAndUpdate(
   req.params.id,
   update,
-  { new: true, runValidators: true }
+  { runValidators: true }
 );
 
        if (!destenation) {

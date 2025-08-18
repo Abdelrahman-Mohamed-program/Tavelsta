@@ -32,8 +32,7 @@ pricePerNight:{
     min:0
 },
 reviews:{
-    type:[String],
-    default:null,
+    type:[String],default:undefined,
     validate:{
         validator:function(value){
             if((value&&!Array.isArray(value))||(value&&value.length<=0)){
