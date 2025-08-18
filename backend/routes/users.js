@@ -23,7 +23,7 @@ router.get("/currentUser",getCurrentUser)
 //update password 
 router.patch("/currentUser/changePassword",changePassword)
 
-//update user data
+//update user data (email and username)
 router.put("/currentUser/update",update)
 //block and unblock user
 router.patch("/block/:id",adminAuth,blockUser)
