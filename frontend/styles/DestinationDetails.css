@@ -1,257 +1,198 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .header {
-    background: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  background: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
 }
 
 .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
 }
 
 .nav-links a:hover {
-    color: #007bff;
+  color: #007bff;
 }
 
 .main-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-gallery {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .main-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .thumbnail-images {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .thumbnail {
-    width: 80px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 2px solid transparent;
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .thumbnail.active {
-    border-color: #007bff;
+  border-color: #007bff;
 }
 
 .destination-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 20px;
 }
 
-.destination-title h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+.destination-info h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 .rating {
-    color: #ffc107;
-    margin-bottom: 5px;
+  color: #ffc107;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.location {
-    color: #666;
+.type {
+  color: #555;
+  font-size: 14px;
 }
 
 .price-box {
-    background: #007bff;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    text-align: center;
+  background: #007bff;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .price {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .price-unit {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .description {
-    font-size: 16px;
-    margin-bottom: 30px;
-    color: #555;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-}
-
-.highlights {
-    margin-bottom: 30px;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #555;
 }
 
 .section-title {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
 }
 
-.highlight-list {
-    list-style: none;
-}
-
-.highlight-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.highlight-list li:last-child {
-    border-bottom: none;
-}
-
-.tips-list {
-    list-style: none;
-}
-
-.tips-list li {
-    padding: 8px 0;
-    color: #555;
-}
-
-.sidebar {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    height: fit-content;
-}
-
-.package-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.package-item:last-child {
-    border-bottom: none;
-}
-
-.book-btn {
-    width: 100%;
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.book-btn:hover {
-    background: #218838;
+.travel-tips {
+  margin-bottom: 30px;
 }
 
 .reviews {
-    margin-top: 30px;
-    grid-column: 1 / -1;
+  margin-top: 30px;
 }
 
 .review-item {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.reviewer-name {
-    font-weight: bold;
-}
-
-.review-rating {
-    color: #ffc107;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
+  .container {
+    padding: 10px;
+  }
 
-    .destination-header {
-        flex-direction: column;
-        gap: 15px;
-    }
+  .destination-header {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
+  .thumbnail-images {
+    flex-wrap: wrap;
+  }
 
-    .thumbnail-images {
-        flex-wrap: wrap;
-    }
-
-    .nav-links {
-        display: none;
-    }
+  .nav-links {
+    display: none;
+  }
 }
+
+.booking-btn {
+  margin-top: 12px;
+  padding: 12px 20px;
+  background-color: #28a745; /* green */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.booking-btn:hover {
+  background-color: #218838;
+}
+
