@@ -1,5 +1,4 @@
 const userModel = require("../models/users")
-const userModel = require("../models/users")
 const bcrypt = require("bcrypt")
 
 const loginCheck = async (req,res,next)=>{      

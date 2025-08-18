@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const destenationsSchema =  mongoose.Schema({
+const destinationsSchema =  mongoose.Schema({
 imgs:{
 type: [{
     type: String,
@@ -76,6 +76,6 @@ travlingTips:{
 })
 /** @type {import('mongoose').Model<any>} */
 
-const destenationsModel = mongoose.model("Destenation",destenationsSchema);
+const destinationsModel = mongoose.model("Destenation",destinationsSchema);
 
-module.exports = destenationsModel;
+module.exports = destinationsModel;

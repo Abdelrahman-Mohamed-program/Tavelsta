@@ -1,13 +1,13 @@
 const { isValidObjectId } = require("mongoose")
-const destenationsModel = require("../models/destenations")
+const destinationsModel = require("../models/destinations")
 
 const index =async (req,res,next)=>{
     try {
-        const destenations = await destenationsModel.find()
+        const destinations = await destinationsModel.find()
 
 res.status(200).json({
     method:"GET",
-    data: destenations
+    data: destinations
 })
     } catch (error) {
         next(error)
@@ -17,7 +17,7 @@ res.status(200).json({
 
 const create = async (req,res,next)=>{
     try {
-       const destenation = await destenationsModel(req.body);
+       const destenation = await destinationsModel(req.body);
        
       await destenation.save()
 
@@ -65,7 +65,7 @@ const update = {
   }
 };
 
-const destenation = await destenationsModel.findByIdAndUpdate(
+const destenation = await destinationsModel.findByIdAndUpdate(
   req.params.id,
   update,
   { runValidators: true }
@@ -98,7 +98,7 @@ const show = async(req,res,next)=>{
             })
         }
 
-        const destenation = await destenationsModel.findById(req.params.id);
+        const destenation = await destinationsModel.findById(req.params.id);
 
         if (!destenation) {
        return res.status(400).json({
@@ -125,7 +125,7 @@ const destroy =async (req,res,next)=>{
             })
         }
 
-       const destenation = await destenationsModel.findByIdAndDelete(req.params.id);
+       const destenation = await destinationsModel.findByIdAndDelete(req.params.id);
        
        if (!destenation) {
        return res.status(400).json({
