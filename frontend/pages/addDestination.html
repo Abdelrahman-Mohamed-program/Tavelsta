@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Destination</title>
+    <link href="../styles/addData.css" rel="stylesheet">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Destination</h2>
+        <form id="addDestinationForm">
+
+            <label for="destinationTitle">Title</label>
+            <input type="text" id="destinationTitle" name="destinationName" required>
+
+
+            <label for="destinationPrice">Price per Night</label>
+            <input type="text" id="destinationPrice" name="destinationPrice" required>
+
+            <label for="destinationDescription">Description</label>
+            <input type="text" id="destinationDescription" name="destinationDescription" required>
+
+   
+
+            <label for="destinationImage">Image URL</label>
+            <input type="text" id="destinationImage" name="destinationImage" required>
+
+            <label for="destinationTips">Tips</label>
+            <input type="text" id="destinationTips" name="destinationTips" required>
+
+
+
+            <button type="submit" class="btn-submit">Add Destination</button>
+        </form>
+        <a  class ="btn" href="admin.html"> Return to admin page </a>
+    </div>
+    <script src="../js/adminPage.js"></script>
+</body>
+</html>
