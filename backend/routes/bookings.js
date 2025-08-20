@@ -1,6 +1,6 @@
 const  router  = require("express").Router()
 
-const {create,index} = require("../controllers/bookings.controller")
+const {create,index,getUserBookings} = require("../controllers/bookings.controller")
 
 router.use((req,res,next)=>{
 console.log("request came to booking route");
@@ -10,6 +10,7 @@ router.get("/",index)
 
 router.post("/add",create)
 
+router.get("/currentUser",getUserBookings)
 // router.put("/update/:id",edit)
 
 // router.get("/:id",show)

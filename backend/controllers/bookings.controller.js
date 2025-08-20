@@ -16,15 +16,36 @@ try {
 } 
 
 const index = async (req,res,next)=>{
-    const bookings = await bookingsModel.find();
+    try {
+        
+     
+  const bookings = await bookingsModel.find()
+  .populate("user", "email")             
+  .populate("destination", "title");   
 
-    
     res.status(200).json({
     method:"GET",
     bookings
 })
+    }catch (error) {
+        next(error)
+    }
+}
+
+const getUserBookings = async(req,res,next)=>{
+const userId = req.user.id; // or wherever you get the userId
+try {
+    const bookings = await bookingsModel.find({ user: userId })
+res.status(200).json({
+      method:"GET",
+      bookings
+})
+} catch (error) {
+    next(error)
+}
+
 }
 
 module.exports = {
-    create,index
+    create,index,getUserBookings
 }

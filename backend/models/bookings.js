@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const bookingsSchema =  mongoose.Schema({
    destination:{
     type:mongoose.Types.ObjectId,
-    ref:"Destination",
-    required:true},
+    ref:"Destenation",
+    required:true
+,  select:false},
    user:{
     type:mongoose.Types.ObjectId,
-    ref:"USER",
-    required:true
+    ref:"User",
+    required:true,
+     select:false
    },
      bookingDate:{
     type:Date,
