@@ -26,39 +26,49 @@
         </ul>
     </nav>
 
-    <main class="profile">
-        <section class="profile__account">
-            <h2>Account Settings</h2>
-            <form id="account-form">
-                <label>Email</label>
-                <input type="email" id="email" />
+<main class="profile">
+  <!-- Account Info -->
+  <section class="profile__account">
+    <h2>Account Settings</h2>
+    <form id="account-form">
+      <label>Email</label>
+      <input type="email" id="email" required />
 
-                <label>Username</label>
-                <input type="text" id="username" />
+      <label>Username</label>
+      <input type="text" id="username" required />
 
-                <label>Current Password</label>
-                <input type="password" id="current-password" />
+      <button type="submit" class="btn">Save Changes</button>
+    </form>
+  </section>
 
-                <label>New Password</label>
-                <input type="password" id="new-password" />
+  <!-- Password Change -->
+  <section class="profile__password">
+    <h2>Change Password</h2>
+    <form id="password-form">
+      <label>Current Password</label>
+      <input type="password" id="current-password" required />
 
-                <button type="submit" class="btn">Save Changes</button>
-            </form>
-        </section>
+      <label>New Password</label>
+      <input type="password" id="new-password" required />
 
-        <section class="profile__trips">
-            <h2>Upcoming Trips</h2>
-            <div id="upcoming-trips" class="trip-cards"></div>
-        </section>
+      <button type="submit" class="btn">Change Password</button>
+    </form>
+  </section>
 
-        <section class="profile__trips">
-            <h2>Past Trips</h2>
-            <div id="past-trips" class="trip-cards"></div>
-        </section>
+  <!-- Trips -->
+  <section class="profile__trips">
+    <h2>Upcoming Trips</h2>
+    <div id="upcoming-trips" class="trip-cards"></div>
+  </section>
 
-        <button id="logout-btn" class="btn btn--danger">Logout</button>
-    </main>
+  <section class="profile__trips">
+    <h2>Past Trips</h2>
+    <div id="past-trips" class="trip-cards"></div>
+  </section>
 
+  <!-- Logout -->
+  <button id="logout-btn" class="btn btn--danger">Logout</button>
+</main>
     <script src="../js/main.js"></script>
     <script src="../js/profile.js"></script>
 </body>

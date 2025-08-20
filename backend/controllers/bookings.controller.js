@@ -35,7 +35,7 @@ const index = async (req,res,next)=>{
 const getUserBookings = async(req,res,next)=>{
 const userId = req.user.id; // or wherever you get the userId
 try {
-    const bookings = await bookingsModel.find({ user: userId })
+    const bookings = await bookingsModel.find({ user: userId }).populate("destination", "_id");   
 res.status(200).json({
       method:"GET",
       bookings
