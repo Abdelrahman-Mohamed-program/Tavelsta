@@ -13,10 +13,9 @@ db.once("open",()=>{
 
 db.on("error",()=>{
     console.error("faild to connect with DB");
-    
 })
 }
 
 
 
-module.exports ={dbConnection}
+module.exports = {dbConnection}

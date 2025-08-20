@@ -1,8 +1,6 @@
 const router  = require("express").Router()
 
-
-
-const {signup,login,index} = require("../controllers/users.controller")
+const {signup,login,index,getCurrentUser,blockUser,unblockUser,changePassword,update} = require("../controllers/users.controller")
 const adminAuth =require("../middlewares/adminAuth")
 router.use((req,res,next)=>{
     console.log("req cam here");
@@ -18,5 +16,19 @@ router.post("/login",loginCheck,login)
 
 //all users
 router.get("/",adminAuth,index)
+
+//one user
+router.get("/currentUser",getCurrentUser)
+
+//update password 
+router.patch("/currentUser/changePassword",changePassword)
+
+//update user data (email and username)
+router.put("/currentUser/update",update)
+//block and unblock user
+router.patch("/block/:id",adminAuth,blockUser)
+router.patch("/unblock/:id",adminAuth,unblockUser)
+
+
 
 module.exports = router

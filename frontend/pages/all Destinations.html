@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unforgettable Cultural Experiences</title>
+    <link rel="stylesheet" href="../styles/all destinations.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+
+ </div>
+<nav>
+  <div class="nav__header">
+    <div class="nav__logo">
+      <a href="#" class="logo">Travlesta</a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
+    </div>
+  </div>
+  <ul class="nav__links" id="nav-links">
+    <li><a href="home.html">HOME</a></li>
+    <li><a href="all Destinations.html">DESTINATIONS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="login.html">LOGIN</a></li>
+  </ul>
+  <div class="nav__btns">
+    <a href="login and signup.html" class="btn">Book Now!</a>
+  </div>
+</nav>
+
+<!-- MODERN HEADER -->
+
+<div class="card-container" id="cards-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
+
+menuBtn.addEventListener("click", (e) => {
+  navLinks.classList.toggle("open");
+
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+});
+
+navLinks.addEventListener("click", (e) => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+});
+</script>
+<script>
+async function loadDestinations() {
+  try {
+    const res = await axios.get("http://localhost:2005/api/v1/destinations/");
+    const destinations = Array.isArray(res.data.data) ? res.data.data : [res.data.data];
+    const container = document.getElementById("cards-container");
+    container.innerHTML = "";
+
+    destinations.forEach(dest => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${dest.imgs?.[0] || 'https://via.placeholder.com/300'}" alt="${dest.title}">
+        </div>
+        <div class="card-content">
+          <div class="tag">${dest.type || ""}</div>
+          <h3>${dest.title}</h3>
+          <p class="desc">${dest.desc || ""}</p>
+          <div class="rating">⭐ ${dest.rating?.toFixed(1) || 0}</div>
+          <div class="price">From £${dest.pricePerNight} per night</div>
+          <button class="book-btn" onclick="goToDestination('${dest._id}')">Book Now</button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+  }
+}
+
+function goToDestination(id) {
+
+  
+  // Navigate to DestinationPage.html and pass the id as a query parameter
+  window.location.href = `DestinationPage.html?id=${encodeURIComponent(id)}`;
+}
+
+loadDestinations();
+</script>
+</body>
+</html>

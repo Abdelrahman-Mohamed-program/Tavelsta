@@ -13,24 +13,34 @@ const {dbConnection} = require("./config/db")
 dbConnection();
 
 //Routes, middlewares and config:
+
 app.use((req,res,next)=>{
 res.set({
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "*",
-  "Access-Control-Allow-Headers": "*"
 });
 
+//handling preflight requests
 if (req.method=="OPTIONS") {
+  res.set({
+  "Access-Control-Allow-Methods": "*",
+  "Access-Control-Allow-Headers": "*"
+  })
   return res.sendStatus(204);
 }
   
   next()
 })
-app.use(express.json());
-app.use(tokenAuth);
 
-const userRouter = require("./routes/users")
-app.use("/api/v1/users",userRouter);
+app.use(express.json());
+// app.use(tokenAuth);
+
+const usersRouter = require("./routes/users")
+const destinationsRouter = require("./routes/destinations")
+
+app.use("/api/v1/destinations",destinationsRouter);
+app.use("/api/v1/users",usersRouter);
+// 
+
 
 
 
