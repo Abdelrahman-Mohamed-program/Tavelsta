@@ -6,70 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travlesta - Profile</title>
     <link rel="stylesheet" href="../styles/all destinations.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../styles/profile.css" />
+     <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet"/>
 </head>
 
 <body>
-    <nav>
-        <div class="nav__header">
-            <div class="nav__logo">
-                <a href="home.html" class="logo">Travlesta</a>
-            </div>
-            <div class="nav__menu__btn" id="menu-btn">
-                <i class="ri-menu-line"></i>
-            </div>
-        </div>
-        <ul class="nav__links" id="nav-links">
-            <li><a href="home.html#home">HOME</a></li>
-            <li><a href="all Destinations.html">DESTINATIONS</a></li>
-            <li><a href="home.html#contact">CONTACT</a></li>
-        </ul>
-    </nav>
+<nav>
+  <div class="nav__header">
+    <div class="nav__logo">
+      <a href="#" class="logo">Travlesta</a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
+    </div>
+  </div>
+  <ul class="nav__links" id="nav-links">
+    <li><a href="home.html">HOME</a></li>
+    <li><a href="all Destinations.html">DESTINATIONS</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+        <li></li>
+  </ul>
+    <div class="nav__btns">
+  <button id="change-button" class="btn">
+    <a id="change-link" href="profile.html">
+     <i class="fa-solid fa-user"></i>
+    </a>
+  </button>
+</div>
+</nav>
 
-<main class="profile">
+
+    <main class="profile">
   <!-- Account Info -->
-  <section class="profile__account">
-    <h2>Account Settings</h2>
-    <form id="account-form">
-      <label>Email</label>
-      <input type="email" id="email" required />
+  <section class="profile__card">
+    <h2>Account Information</h2>
+    <form id="account-form" class="form">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" required />
+      </div>
 
-      <label>Username</label>
-      <input type="text" id="username" required />
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="username" required />
+      </div>
 
-      <button type="submit" class="btn">Save Changes</button>
+      <button type="submit" class="btn">Update Account</button>
     </form>
   </section>
 
-  <!-- Password Change -->
-  <section class="profile__password">
+  <!-- Password -->
+  <section class="profile__card">
     <h2>Change Password</h2>
-    <form id="password-form">
-      <label>Current Password</label>
-      <input type="password" id="current-password" required />
+    <form id="password-form" class="form">
+      <div class="form-group">
+        <label>Current Password</label>
+        <input type="password" id="current-password" required />
+      </div>
 
-      <label>New Password</label>
-      <input type="password" id="new-password" required />
+      <div class="form-group">
+        <label>New Password</label>
+        <input type="password" id="new-password" required />
+      </div>
 
-      <button type="submit" class="btn">Change Password</button>
+      <button type="submit" class="btn">Update Password</button>
     </form>
   </section>
 
   <!-- Trips -->
-  <section class="profile__trips">
+  <section class="profile__card">
     <h2>Upcoming Trips</h2>
     <div id="upcoming-trips" class="trip-cards"></div>
   </section>
 
-  <section class="profile__trips">
+  <section class="profile__card">
     <h2>Past Trips</h2>
     <div id="past-trips" class="trip-cards"></div>
   </section>
 
   <!-- Logout -->
-  <button id="logout-btn" class="btn btn--danger">Logout</button>
+  <div class="logout">
+    <button id="logout-btn" class="btn btn--danger">Logout</button>
+  </div>
 </main>
-    <script src="../js/main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/profile.js"></script>
 </body>
 

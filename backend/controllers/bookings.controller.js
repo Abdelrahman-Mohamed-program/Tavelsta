@@ -35,7 +35,7 @@ const index = async (req,res,next)=>{
 const getUserBookings = async(req,res,next)=>{
 const userId = req.user.id; // or wherever you get the userId
 try {
-    const bookings = await bookingsModel.find({ user: userId }).populate("destination", "_id");   
+    const bookings = await bookingsModel.find({ user: userId }).populate("destination", "_id title");   
 res.status(200).json({
       method:"GET",
       bookings
@@ -46,6 +46,28 @@ res.status(200).json({
 
 }
 
+const destroy = async(req,res,next)=>{
+    const id = req.params.id;
+    if (!id) {
+        return res.status(400).json({
+            error:"Bad request",
+            message:"id is required in the url"
+        })
+    }
+    const booking = await bookingsModel.findByIdAndDelete(id)
+
+    if (!booking) {
+         return res.status(400).json({
+            error:"Bad request",
+            message:"There is no booking with this id"
+        })
+    }
+    res.status(200).json({
+        method:"DELETE",
+        message:"Booking object deleted successfully"
+    })
+}
+
 module.exports = {
-    create,index,getUserBookings
+    create,index,getUserBookings,destroy
 }

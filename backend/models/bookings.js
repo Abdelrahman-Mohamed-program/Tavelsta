@@ -12,7 +12,7 @@ const bookingsSchema =  mongoose.Schema({
     required:true,
      select:false
    },
-     bookingDate:{
+    bookingDate:{
     type:Date,
     required:true
      },

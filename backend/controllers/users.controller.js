@@ -60,11 +60,7 @@ const getCurrentUser = async (req,res,next)=>{
     res.status(200).json({
         method:"GET",
         message:"User found",
-        user:{
-            id:user.id,
-            username:user.username,
-            bookings:user.bookings
-        }
+        user
     })
     } catch (error) {
         next(error)
@@ -138,7 +134,17 @@ try {
          message:"Current and new Password are required"
         })
     }
-    const user = await userModel.findById(req.user.id);
+
+    if (req.body.newPassword.length < 8 ) {
+         return  res.status(400).json({
+         method:"PATCH",
+         error:"Bad request",
+         message:"Password must be at least 8 characters"
+        })
+    }
+    const user = await userModel.findById(req.user.id).select("+password");
+    console.log(req.body.currentPassword + user.password);
+    
     const passwordCheck = await bcrypt.compare(req.body.currentPassword,user.password);
     
    if (!passwordCheck) {

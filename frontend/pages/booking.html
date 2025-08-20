@@ -78,6 +78,10 @@
                 <label for="nights">Number of nights</label>
                 <input id="nights" type="number" name="nights" min="1" value="1" required>
               </div>
+              <div class="form-group">
+              <label for="bookingDate">Booking Date</label>
+                 <input id="bookingDate" type="date" name="bookingDate" required>
+                </div>
 
               <button type="submit" class="btn-primary">Confirm Booking</button>
             </form>
@@ -96,6 +100,10 @@
     console.log('Received ID:', id);
 
     let destination = {}; // global
+    
+if (!token) {
+  window.location.href = "login.html"; 
+}
 
     function formatEGP(amount) {
       try {
@@ -178,8 +186,10 @@
         const name = String(formData.get('name')).trim();
         const persons = Number(formData.get('persons'));
         const nights = Number(formData.get('nights'));
+        const bookingDate = formData.get('bookingDate'); // ✅ from input
 
-        if (!name || persons <= 0 || nights <= 0) {
+
+        if (!name || persons <= 0 || nights <= 0 || !bookingDate) {
           msg.textContent = 'Please fill all fields correctly.';
           msg.style.color = 'crimson';
           return;
@@ -191,7 +201,7 @@
         // Create new booking object
         const newBooking = {
           destination: destination._id,
-          bookingDate: Date.now(),
+          bookingDate: new Date(bookingDate),
           details: 
             { persons, nights, totalPrice }
         };

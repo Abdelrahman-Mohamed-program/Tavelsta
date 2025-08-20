@@ -7,6 +7,10 @@ console.log('Received ID:', id);
 let destinationData = {}
 
 
+if (!token) {
+  window.location.href = "login.html"; 
+} 
+
 document.addEventListener("DOMContentLoaded", () => {
   // Your existing code here
 axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{

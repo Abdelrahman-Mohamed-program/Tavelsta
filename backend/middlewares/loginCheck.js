@@ -31,6 +31,13 @@ const user = await userModel.findOne({ email: req.body.email}).select("+password
       message:"user is not registered"
     });
   }
+  if (user.blocked) {
+    return res.status(401).json({
+      method: "POST",
+      error: "Unauthorized",
+      message:"user is blocked by the admin"
+    });
+  }
 
   console.log(req.body.password + user);
   

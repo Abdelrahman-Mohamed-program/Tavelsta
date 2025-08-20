@@ -26,7 +26,7 @@
   <ul class="nav__links" id="nav-links">
     <li><a href="home.html">HOME</a></li>
     <li><a href="all Destinations.html">DESTINATIONS</a></li>
-    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
         <li></li>
   </ul>
     <div class="nav__btns">
@@ -49,9 +49,12 @@
  const token = localStorage.getItem("token")
  const changeButton = document.getElementById("change-button");
  const changeLink = document.getElementById("change-link");
+
   if (token) {
     changeLink.innerHTML = '<i class="fa-solid fa-user"></i>';  
     changeLink.href = "profile.html";
+  }else{
+  window.location.href = "login.html"; 
   }
 
     const menuBtn = document.getElementById("menu-btn");
