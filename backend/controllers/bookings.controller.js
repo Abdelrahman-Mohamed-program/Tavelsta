@@ -15,8 +15,16 @@ try {
 }
 } 
 
+const index = async (req,res,next)=>{
+    const bookings = await bookingsModel.find();
 
+    
+    res.status(200).json({
+    method:"GET",
+    bookings
+})
+}
 
 module.exports = {
-    create
+    create,index
 }

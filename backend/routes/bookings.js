@@ -1,12 +1,12 @@
 const  router  = require("express").Router()
 
-const {create} = require("../controllers/bookings.controller")
+const {create,index} = require("../controllers/bookings.controller")
 
 router.use((req,res,next)=>{
 console.log("request came to booking route");
     next()
 })
-// router.get("/",index)
+router.get("/",index)
 
 router.post("/add",create)
 
