@@ -7,6 +7,7 @@ function genearteToken (user){
     if (user.email==="admin@gmail.com") {
         isAdmin = true
     }
+   console.log("id :" + user._id);
    
     const payload = {
         id:user._id,

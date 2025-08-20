@@ -28,8 +28,7 @@ axios.get(`http://localhost:2005/api/v1/destinations/${id}`)
 const bookNowBtn = document.getElementById("bookNowBtn");
   if (bookNowBtn) {
     bookNowBtn.addEventListener("click", () => {
-      alert("Book");
-      ;
+     window.location.href = `booking.html?id=${encodeURIComponent(id)}`;
     });
   }
 

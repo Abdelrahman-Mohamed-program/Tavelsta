@@ -9,6 +9,9 @@ const notFound = (req,res,next)=>{
 
 
 const errorHandler = (error,req,res,next)=>{
+     if (error.name=="ValidationError") {
+            error.status = 400
+        }
     const status = error.status||500
     res.status(status).json({
         error:error.message

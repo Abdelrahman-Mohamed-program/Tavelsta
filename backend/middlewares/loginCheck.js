@@ -22,7 +22,7 @@ try {
        })
     }
 
-const user = await userModel.findOne({ email: req.body.email });
+const user = await userModel.findOne({ email: req.body.email}).select("+password");
 
   if (!user) {
     return res.status(401).json({
@@ -32,7 +32,8 @@ const user = await userModel.findOne({ email: req.body.email });
     });
   }
 
-
+  console.log(req.body.password + user);
+  
   const passwordCheck = await bcrypt.compare(req.body.password,user.password)
   
   if (!passwordCheck) {

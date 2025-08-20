@@ -21,6 +21,8 @@ const tokenAuth = async (req,res,next)=>{
         message:err.message
          })
         }
+        console.log("thisis payloid " + payload.id);
+        
         req.user = payload;
             next()
     })

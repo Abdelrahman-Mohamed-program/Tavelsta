@@ -1,6 +1,6 @@
 const loginForm = document.getElementById('loginForm');
 const token = localStorage.getItem("token")
-localStorage.removeItem("token")
+
  var a = document.getElementById("loginBtn");
     var b = document.getElementById("registerBtn");
     var x = document.getElementById("login");
@@ -24,7 +24,7 @@ localStorage.removeItem("token")
         y.style.opacity = 1;
     }
 
-
+localStorage.removeItem("token")
 if (token) {
   console.log(token);
   Swal.fire('Error', 'user already regestered log out first', 'error');

@@ -6,186 +6,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>London Trip Booking</title>
     <link rel="stylesheet" href="../styles/booking.css">
+       <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet"/>
 </head>
-
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <!-- title -->
-            <h1>London</h1>
-        </div>
-
-        <div class="content">
-            <!-- Left Booking Card -->
-            <div class="booking-card">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.tfCJ7apVR5-0QIvr8t2GxwHaLG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                    alt="Pocket London">
-            </div>
-
-            <!-- Right Hero Image -->
-            <div class="hero">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.TrtYdfXYSFhEvAnYluwgxwHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                    alt="London Bridge">
-                <!-- Right side -->
-                <div class="right">
-
-                    <div class="options">
-                        <!-- get the destenation and set price per night -->
-                        <div class="option selected" style="margin-top: 30px;">Price per night <span>LE 735.00
-                                EGP</span></div>
-                    </div>
-
-                    <div class="overview">
-                        <h3>OVERVIEW</h3>
-                        <p>
-                            Lonely Planet's local travel experts reveal all you need to know to plan an unforgettable
-                            trip to London.
-                            Get a snap of Big Ben, view art at the Tate Modern, see Sky Garden's 360° views, with our
-                            Pocket travel guide
-                            that's packed with 'perfect trip' itineraries, fun walking tours, and insider tips so you
-                            can discover twice
-                            the city in half the time.
-                        </p>
-                    </div>
-
-                    <div class="booking-form">
-                        <h3>Booking details</h3>
-                        <form id="bookingForm" class="form-grid">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input id="name" type="text" name="name" placeholder="Enter your name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="persons">Number of persons</label>
-                                <input id="persons" type="number" name="persons" min="1" value="1" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nights">Number of nights</label>
-                                <input id="nights" type="number" name="nights" min="1" value="1" required>
-                            </div>
-
-                            <button type="submit" class="btn-primary">Confirm Booking</button>
-                        </form>
-                        <p id="bookingMsg"></p>
-                    </div>
-
-
-
-
-
-                </div>
-            </div>
-
-        </div>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <!-- title (from backend) -->
+      <h1></h1>
     </div>
-    </div>
-    <script src="../js/main.js"></script>
-    <script>
-        // Example object you shared (use your actual data source if loaded elsewhere)
-        const destination = destinations[1];
 
-        // Helper for EGP formatting without doing FX conversion
-        function formatEGP(amount) {
-            try {
-                return 'LE ' + Number(amount).toLocaleString('en-EG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' EGP';
-            } catch {
-                return `LE ${amount} EGP`;
-            }
+    <div class="content">
+      <!-- Left Booking Card -->
+      <div class="booking-card">
+        <img alt="Destination preview" />
+      </div>
+
+      <!-- Right Hero Image -->
+      <div class="hero">
+        <img alt="Destination hero" />
+        <!-- Right side -->
+        <div class="right">
+
+          <div class="options">
+            <!-- Price per night -->
+            <div class="option selected" style="margin-top: 30px;">
+              Price per night <span></span>
+            </div>
+          </div>
+
+          <div class="overview">
+            <h3>OVERVIEW</h3>
+            <p></p>
+          </div>
+
+          <div class="booking-form">
+            <h3>Booking details</h3>
+            <form id="bookingForm" class="form-grid">
+              <div class="form-group">
+                <label for="persons">Number of persons</label>
+                <input id="persons" type="number" name="persons" min="1" value="1" required>
+              </div>
+
+              <div class="form-group">
+                <label for="nights">Number of nights</label>
+                <input id="nights" type="number" name="nights" min="1" value="1" required>
+              </div>
+
+              <button type="submit" class="btn-primary">Confirm Booking</button>
+            </form>
+            <p id="bookingMsg"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    console.log('Received ID:', id);
+
+    let destination = {}; // global
+
+    function formatEGP(amount) {
+      try {
+        return 'LE ' + Number(amount).toLocaleString('en-EG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' EGP';
+      } catch {
+        return `LE ${amount} EGP`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:2005/api/v1/destinations/${id}`);
+        destination = data.destination;
+        console.log('Fetched destination:', destination);
+
+        // Title
+        const titleEl = document.querySelector('.header h1');
+        if (titleEl) titleEl.textContent = destination.title || "Unknown Destination";
+
+        // Left booking card image
+        const leftImg = document.querySelector('.booking-card img');
+        if (leftImg && destination.imgs?.[0]) {
+          leftImg.src = destination.imgs[0];
+          leftImg.alt = destination.title;
         }
 
-        // Populate your existing HTML
-        document.addEventListener('DOMContentLoaded', () => {
-            // Title
-            const titleEl = document.querySelector('.header h1');
-            if (titleEl) titleEl.textContent = destination.title;
+        // Right hero image
+        const heroImg = document.querySelector('.hero img');
+        if (heroImg) {
+          const src = destination.imgs?.[1] || destination.imgs?.[0];
+          if (src) {
+            heroImg.src = src;
+            heroImg.alt = destination.title + ' - hero';
+          }
+        }
 
-            // Left booking card image = first image
-            const leftImg = document.querySelector('.booking-card img');
-            if (leftImg && destination.img?.[0]) {
-                leftImg.src = destination.img[0];
-                leftImg.alt = destination.title;
-                leftImg.loading = 'lazy';
-                leftImg.decoding = 'async';
-            }
+        // Price per night
+        const priceSpan = document.querySelector('.right .options .option.selected span');
+        if (priceSpan) priceSpan.textContent = formatEGP(destination.pricePerNight);
 
-            // Right hero image = second image (fallback to first)
-            const heroImg = document.querySelector('.hero img');
-            if (heroImg) {
-                const src = destination.img?.[1] || destination.img?.[0];
-                if (src) {
-                    heroImg.src = src;
-                    heroImg.alt = destination.title + ' - hero';
-                    heroImg.loading = 'lazy';
-                    heroImg.decoding = 'async';
-                }
-            }
+        // Overview
+        const overviewP = document.querySelector('.overview p');
+        if (overviewP) overviewP.textContent = destination.desc || "No description available";
 
-            // Price per night (keeps your "LE ... EGP" style)
-            const priceSpan = document.querySelector('.right .options .option.selected span');
-            if (priceSpan) priceSpan.textContent = formatEGP(destination.pricePerNight);
+      } catch (err) {
+        console.error("Error fetching destination:", err);
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('bookingForm');
+      const msg = document.getElementById('bookingMsg');
 
-            // Overview/description
-            const overviewP = document.querySelector('.overview p');
-            if (overviewP) overviewP.textContent = destination.desc;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-            // (Optional) You have a button already — we can set a data attribute for later use
-            const bookBtn = document.querySelector('.buttons .add-cart');
-            if (bookBtn) bookBtn.setAttribute('data-destination-id', destination.id);
+        const formData = new FormData(form);
+        const name = String(formData.get('name')).trim();
+        const persons = Number(formData.get('persons'));
+        const nights = Number(formData.get('nights'));
+
+        if (!name || persons <= 0 || nights <= 0) {
+          msg.textContent = 'Please fill all fields correctly.';
+          msg.style.color = 'crimson';
+          return;
+        }
+
+        // ✅ Calculate total price using backend data
+        const totalPrice = destination.pricePerNight * persons * nights;
+
+        // Create new booking object
+        const newBooking = {
+          destination: destination._id,
+          date: Date.now(),
+          details: 
+            { persons, nights, totalPrice }
+        };
+
+        axios.post("http://localhost:2005/api/v1/bookings/add",newBooking).then(res=>{
+            console.log(res);
+        })
+        Swal.fire({
+        title: '✅ Booking Successful!',
+        html: `
+            <p>You booked a trip to <b>${destination.title}</b></p>
+            <p>Total Price: <b>LE ${totalPrice.toLocaleString()}</b></p>
+        `,
+        icon: 'success',
+        confirmButtonText: 'Awesome!'
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('bookingForm');
-            const msg = document.getElementById('bookingMsg');
+       
+        form.reset();
 
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-                const name = String(formData.get('name')).trim();
-                const persons = Number(formData.get('persons'));
-                const nights = Number(formData.get('nights'));
-
-                if (!name || persons <= 0 || nights <= 0) {
-                    msg.textContent = 'Please fill all fields correctly.';
-                    msg.style.color = 'crimson';
-                    return;
-                }
-
-                // ✅ Calculate total price
-                const totalPrice = destination.pricePerNight * persons * nights;
-
-                // Create new booking object
-                const newBooking = {
-                    id: bookings.length ? bookings[bookings.length - 1].id + 1 : 0,
-                    destinationID: destination.id,
-                    dateOfBooking: Date.now(),
-                    userDetails: [
-                        {
-                            name,
-                            persons,
-                            nights,
-                            totalPrice // ✅ added here
-                        }
-                    ]
-                };
-
-                // Push into global bookings (from bookings.js)
-                bookings.push(newBooking);
-
-                msg.textContent = `Booking added! Total: LE ${totalPrice.toLocaleString()}`;
-                msg.style.color = 'green';
-                form.reset();
-
-                console.log('Current bookings:', bookings);
-            });
-        });
-
-    </script>
-
+      });
+    });
+  </script>
+</body>
 </body>
 
 </html>

@@ -15,10 +15,6 @@ const userSchema = mongoose.Schema({
         required:true,
         match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,"invalid email format"]
     },
-    bookings:{
-        type:[{}],
-        default:[]
-    },
     blocked:{
         type:Boolean,
         default:false

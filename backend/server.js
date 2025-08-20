@@ -7,13 +7,12 @@ const express = require("express"),
 
 const tokenAuth = require("./middlewares/tokenAuth")  
 const {notFound,errorHandler} = require("./middlewares/errorHandle")
-
+const jsonCheck = require("./middlewares/json")
 //database config:
 const {dbConnection} = require("./config/db")    
 dbConnection();
 
 //Routes, middlewares and config:
-
 app.use((req,res,next)=>{
 res.set({
   "Access-Control-Allow-Origin": "*",
@@ -36,10 +35,11 @@ app.use(express.json());
 
 const usersRouter = require("./routes/users")
 const destinationsRouter = require("./routes/destinations")
-
+const bookingsRouter = require("./routes/bookings")
 app.use("/api/v1/destinations",destinationsRouter);
 app.use("/api/v1/users",usersRouter);
-// 
+app.use("/api/v1/bookings",bookingsRouter)
+ 
 
 
 
