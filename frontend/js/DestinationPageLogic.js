@@ -1,31 +1,57 @@
-   const destinationData = {
-      id: 2,
-      img: [
-        "happy-couple-taking-selfie-pic-260nw-2390447961.webp",
-        "nepal-everest-base-camp-everest-travel-photo-20190128094442660-main-image.jpg"
-      ],
-      title: "Cairo, Egypt",
-      desc: "A city rich in ancient history, home to the Great Pyramids, the Sphinx, and the Nile River. Experience the magic of ancient civilizations while enjoying modern comforts and hospitality.",
-      pricePerNight: 850,
-      reviews: [
-        "The pyramids are absolutely breathtaking! An experience of a lifetime.",
-        "Crowded but worth every moment. The history here is incredible.",
-        "Amazing guide service and the sunset view from the pyramids is magical."
-      ],
-      type: "Historical",
-      rating: 4.6,
-      travlingTips: "Hire a local guide for the best experience and visit early to avoid crowds. Bring plenty of water and wear comfortable shoes for walking on uneven surfaces."
-    };
+const params = new URLSearchParams(window.location.search);
+const token = localStorage.getItem("token")
+// Retrieve the 'id'
+const id = params.get('id');
 
+console.log('Received ID:', id);
+let destinationData = {}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Your existing code here
+axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  })
+.then(res=>
+  res.data
+).then(data=>{
+  console.log(data );
+ destinationData = data.destination 
+ renderDestination(destinationData);
+}).catch(error=>{
+     let msg = "Something went wrong!";
+
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+
+  
+})
+});
     function renderDestination(data) {
       document.getElementById("destinationTitle").innerText = data.title;
 
       const mainImage = document.getElementById("mainImage");
       const thumbnailsContainer = document.getElementById("thumbnails");
       thumbnailsContainer.innerHTML = "";
-      mainImage.src = data.img[0];
+      console.log(data.imgs[0]);
+      
+      mainImage.src = data.imgs[0];
 
-      data.img.forEach((src, index) => {
+      data.imgs.forEach((src, index) => {
         const img = document.createElement("img");
         img.src = src;
         img.classList.add("thumbnail");
@@ -49,6 +75,8 @@
 
       document.getElementById("desc").innerText = data.desc;
 
+      console.log(data.travlingTips);
+      
       document.getElementById("tips").innerText = data.travlingTips;
 
       const reviewsContainer = document.getElementById("reviews");
@@ -61,8 +89,6 @@
       });
     }
 
-    renderDestination(destinationData);
-
     document.addEventListener("DOMContentLoaded", () => {
       const bookNowBtn = document.getElementById("bookNowBtn");
 
@@ -72,8 +98,8 @@
           
           setTimeout(() => {
             bookNowBtn.innerHTML = 'Book Now';
-            alert("Booking initiated! Redirecting to payment...");
-          }, 2000);
+            window.location.href = `booking.html?id=${encodeURIComponent(destinationData._id)}`;
+          }, 1000);
         });
       }
     });

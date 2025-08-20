@@ -6,7 +6,7 @@
     <title>Unforgettable Cultural Experiences</title>
     <link rel="stylesheet" href="../styles/all destinations.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet"/>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
        <link
     href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     rel="stylesheet"/>
@@ -27,7 +27,7 @@
     <li><a href="home.html">HOME</a></li>
     <li><a href="all Destinations.html">DESTINATIONS</a></li>
     <li><a href="#contact">CONTACT</a></li>
-    <li><a href="login.html">LOGIN</a></li>
+        <li></li>
   </ul>
     <div class="nav__btns">
   <button id="change-button" class="btn">
@@ -73,11 +73,12 @@ navLinks.addEventListener("click", (e) => {
 <script>
 async function loadDestinations() {
   try {
-    const res = await axios.get("http://localhost:2005/api/v1/destinations/");
+    const res = await axios.get("http://localhost:2005/api/v1/destinations/",{
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  });
     const destinations =  res.data.destinations;
     const container = document.getElementById("cards-container");
     container.innerHTML = "";
-
     destinations.forEach(dest => {
       const card = document.createElement("div");
       card.classList.add("card");
@@ -99,12 +100,32 @@ async function loadDestinations() {
       container.appendChild(card);
     });
   } catch (error) {
-    console.error("Error fetching destinations:", error);
+    console.log(error);
+    
+       let msg = "Something went wrong!";
+   
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+
+
   }
 }
 
 function goToDestination(id) {
-  localStorage.removeItem("token")
   if (token) {
     window.location.href = `DestinationPage.html?id=${encodeURIComponent(id)}`;
     return;
@@ -128,7 +149,7 @@ function goToDestination(id) {
     }
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = "login and signup.html"; // redirect to login page
+      window.location.href = "login and signup.html";
     }
   });
 

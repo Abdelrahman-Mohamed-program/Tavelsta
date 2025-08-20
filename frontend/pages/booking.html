@@ -9,7 +9,31 @@
        <link
     href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     rel="stylesheet"/>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
+<nav>
+  <div class="nav__header">
+    <div class="nav__logo">
+      <a href="#" class="logo">Travlesta</a>
+    </div>
+    <div class="nav__menu__btn" id="menu-btn">
+      <i class="ri-menu-line"></i>
+    </div>
+  </div>
+  <ul class="nav__links" id="nav-links">
+    <li><a href="home.html">HOME</a></li>
+    <li><a href="all Destinations.html">DESTINATIONS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li></li>
+  </ul>
+    <div class="nav__btns">
+  <button id="change-button" class="btn">
+    <a id="change-link" href="profile.html">
+       <i class="fa-solid fa-user"></i>
+    </a>
+  </button>
+</div>
+</nav>
 <body>
   <div class="container">
     <!-- Header -->
@@ -66,6 +90,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
   <script>
+    const token = localStorage.getItem("token")
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     console.log('Received ID:', id);
@@ -82,7 +107,9 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        const { data } = await axios.get(`http://localhost:2005/api/v1/destinations/${id}`);
+        const { data } = await axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+        });
         destination = data.destination;
         console.log('Fetched destination:', destination);
 
@@ -115,8 +142,26 @@
         const overviewP = document.querySelector('.overview p');
         if (overviewP) overviewP.textContent = destination.desc || "No description available";
 
-      } catch (err) {
+      } catch (error) {
         console.error("Error fetching destination:", err);
+         let msg = "Something went wrong!";
+
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
       }
     });
   </script>
@@ -146,24 +191,45 @@
         // Create new booking object
         const newBooking = {
           destination: destination._id,
-          date: Date.now(),
+          bookingDate: Date.now(),
           details: 
             { persons, nights, totalPrice }
         };
 
-        axios.post("http://localhost:2005/api/v1/bookings/add",newBooking).then(res=>{
+        axios.post("http://localhost:2005/api/v1/bookings/add",newBooking,{
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+            }).then(res=>{
             console.log(res);
-        })
-        Swal.fire({
-        title: '✅ Booking Successful!',
-        html: `
+              Swal.fire({
+             title: `✅ Booking Successful!${res.data.message}`,
+             html: `
             <p>You booked a trip to <b>${destination.title}</b></p>
             <p>Total Price: <b>LE ${totalPrice.toLocaleString()}</b></p>
-        `,
-        icon: 'success',
-        confirmButtonText: 'Awesome!'
+             `,
+           icon: 'success',
+            confirmButtonText: 'Awesome!'
         });
-       
+        }).catch(error=>{
+               let msg = "Something went wrong!";
+
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+
+        }) 
         form.reset();
 
       });

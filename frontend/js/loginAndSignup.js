@@ -1,6 +1,5 @@
 const loginForm = document.getElementById('loginForm');
 const token = localStorage.getItem("token")
-
  var a = document.getElementById("loginBtn");
     var b = document.getElementById("registerBtn");
     var x = document.getElementById("login");
@@ -56,13 +55,31 @@ loginForm.addEventListener('submit',  function (e) {
         console.log(res.data)
     Swal.fire('Success', 'Logged in successfully!', 'success').then(() => {
        loginForm.reset();
-      const token = res.data.token;
+      const token = res.data.accessToken;
       localStorage.setItem('token', token);
       window.location.href = 'home.html';
     })
-    }).catch(err=>{
-         console.log(err);
-            Swal.fire('Error',err.response?.data?.error, 'error');
+    }).catch(error=>{
+          let msg = "Something went wrong!";
+
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+     
+
     })
 });
 
@@ -106,9 +123,27 @@ signupForm.addEventListener('submit',function (e) {
       signupForm.reset();
       login()
     });
-        }).catch(err=>{
-            console.log(err);
-            Swal.fire('Error', err.response?.data?.error, 'error');
+        }).catch(error=>{
+              let msg = "Something went wrong!";
+
+    // Check if server sent a response message
+    if (error.response && error.response.data) {
+      msg = error.response.data.message || error.response.data.error || msg;
+    } else if (error.message) {
+      msg = error.message;
+    }
+
+    // Show SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: msg,
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+     
+
         })
 });
 
