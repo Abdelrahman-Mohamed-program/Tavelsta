@@ -7,7 +7,7 @@ const index =async (req,res,next)=>{
 
 res.status(200).json({
     method:"GET",
-    data: destinations
+    destinations
 })
     } catch (error) {
         next(error)

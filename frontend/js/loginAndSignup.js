@@ -24,7 +24,6 @@ const token = localStorage.getItem("token")
         y.style.opacity = 1;
     }
 
-localStorage.removeItem("token")
 if (token) {
   console.log(token);
   Swal.fire('Error', 'user already regestered log out first', 'error');

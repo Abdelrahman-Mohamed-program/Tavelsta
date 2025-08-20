@@ -4,11 +4,13 @@ const menuBtnIcon = menuBtn.querySelector("i");
 
 
 
-localStorage.removeItem("token")
-const changeButton = document.getElementById("change-button")
-if (token) {
-changeButton.value = "bo"
-}
+ const token = localStorage.getItem("token")
+ const changeButton = document.getElementById("change-button");
+ const changeLink = document.getElementById("change-link");
+  if (token) {
+    changeLink.innerHTML = '<i class="fa-solid fa-user"></i>';  
+    changeLink.href = "profile.html";
+  }
 
 menuBtn.addEventListener("click", (e) => {
   navLinks.classList.toggle("open");
