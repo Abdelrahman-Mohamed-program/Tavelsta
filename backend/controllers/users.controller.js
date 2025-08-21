@@ -2,6 +2,7 @@
 const userModel = require("../models/users")
 const genearteToken = require("../config/generateToken")
 const bcrypt = require("bcrypt")
+const { isValidObjectId } = require('mongoose')
 
 const  signup = async (req,res,next)=>{ 
 const hashedPassword =  await bcrypt.hash(req.body.password,10)
@@ -104,6 +105,7 @@ const unblockUser = async (req,res,next)=>{
         error:"Bad request, invalid id"
        })   
     }
+
 
  const user =  await userModel.findByIdAndUpdate(req.params.id,{blocked:false})
 

@@ -1,17 +1,30 @@
+import jwtDecode from "https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.esm.js";
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
 
-
+let decoded;
 
  const token = localStorage.getItem("token")
- const changeButton = document.getElementById("change-button");
  const changeLink = document.getElementById("change-link");
   if (token) {
     changeLink.innerHTML = '<i class="fa-solid fa-user"></i>';  
     changeLink.href = "profile.html";
+    decoded = jwtDecode(token);
+    console.log(decoded); 
   }
 
+  if (decoded?.isAdmin) {
+    const navItems = document.querySelectorAll("#nav-links li");
+
+navItems.forEach((item, index) => {
+  if (index !== 0) { 
+    item.style.display = "none";
+     changeLink.href = "admin.html";
+  }
+});
+  }
+  
 menuBtn.addEventListener("click", (e) => {
   navLinks.classList.toggle("open");
 

@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Logout
   document.getElementById("logout-btn").addEventListener("click", () => {
     localStorage.removeItem("token");
-    window.location.href = "login.html";
+    window.location.href = "home.html";
   });
 });
 

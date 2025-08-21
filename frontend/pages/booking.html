@@ -151,7 +151,7 @@ if (!token) {
         if (overviewP) overviewP.textContent = destination.desc || "No description available";
 
       } catch (error) {
-        console.error("Error fetching destination:", err);
+        console.error("Error fetching destination:", error);
          let msg = "Something went wrong!";
 
     // Check if server sent a response message

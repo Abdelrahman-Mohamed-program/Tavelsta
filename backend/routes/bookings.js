@@ -1,12 +1,13 @@
 const  router  = require("express").Router()
 
-const {create,index,getUserBookings,destroy} = require("../controllers/bookings.controller")
+const {create,index,getUserBookings,destroy} = require("../controllers/bookings.controller");
+const adminAuth = require("../middlewares/adminAuth");
 
 router.use((req,res,next)=>{
 console.log("request came to booking route");
     next()
 })
-router.get("/",index)
+router.get("/",adminAuth,index)
 
 router.post("/add",create)
 

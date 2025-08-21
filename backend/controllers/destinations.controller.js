@@ -1,5 +1,6 @@
 const { isValidObjectId } = require("mongoose")
 const destinationsModel = require("../models/destinations")
+const bookingsModel = require("../models/bookings")
 
 const index =async (req,res,next)=>{
     try {
@@ -126,7 +127,7 @@ const destroy =async (req,res,next)=>{
         }
 
        const destination = await destinationsModel.findByIdAndDelete(req.params.id);
-       
+       await bookingsModel.findOneAndDelete({destination:destination._id})
        if (!destination) {
        return res.status(400).json({
           error:"Bad request",

@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard - TransportCo</title>
 <link rel="stylesheet" href="../styles/admin.css">
-<script type = "text/javascript" src = "../js/adminPage.js">     
-</script> 
+<link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet"/>
 </head>
-<body onload="displayEverything()">
+<body>
 
 <!-- Sidebar -->
 <div class="sidebar">
@@ -25,7 +26,7 @@
     <!-- Header -->
     <div class="header">
         <h1>Admin Dashboard</h1>
-        <div>Welcome, Admin | <a href="login.html" class="logout-link">Logout</a></div>
+        <div>Welcome, Admin | <a id="logout" class="logout-link">Logout</a></div>
     </div>
 
     <!-- Reports -->
@@ -34,15 +35,15 @@
         <div class="card-container">
             <div class="card">
                 <h3>Total Sales</h3>
-                <p>$125,000</p>
+                <p id="total-money"></p>
             </div>
             <div class="card">
                 <h3>Top Destination</h3>
-                <p>Cairo</p>
+                <p id="most-visted"></p>
             </div>
             <div class="card">
                 <h3>Total Bookings</h3>
-                <p>1,230</p>
+                <p id="total-bookings"></p>
             </div>
         </div>
     </section>
@@ -57,12 +58,9 @@
                 <th>Price</th>
                 <th>Actions</th>
             </tr>
-            <tr>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <button onclick="OnAdd(this)"> Add  </button> </td>
-            </tr>
+
+            
+  
         </table>
     </section>
 
@@ -77,13 +75,7 @@
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
-             <tr>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <button onclick="OnAdd(this)"> Add  </button> </td>
-            </tr>
+           
         </table>
     </section>
 
@@ -98,36 +90,15 @@
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
-             <tr>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <button onclick="OnAdd(this)"> Add  </button> </td>
-            </tr>
+           
         </table>
         
     </section>
 
-    <!-- Content Management -->
-    <section id="content">
-        <h2>Content Management</h2>
-        <table id = "contentTable">
-            <tr>
-                <th>Promotion ID</th>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-             <tr>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <input type="text"> </td>
-                <td> <button onclick="OnAdd(this)"> Add  </button> </td>
-            </tr>
-        </table>
-    </section>
+   
 </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src = "../js/adminPage.js"></script> 
 </body>
 </html>

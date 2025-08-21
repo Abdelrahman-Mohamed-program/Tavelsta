@@ -1,6 +1,5 @@
 const params = new URLSearchParams(window.location.search);
 const token = localStorage.getItem("token")
-// Retrieve the 'id'
 const id = params.get('id');
 
 console.log('Received ID:', id);
@@ -12,7 +11,7 @@ if (!token) {
 } 
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Your existing code here
+
 axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{
     headers: token ? { Authorization: `Bearer ${token}` } : {}
   })
@@ -25,14 +24,14 @@ axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{
 }).catch(error=>{
      let msg = "Something went wrong!";
 
-    // Check if server sent a response message
+    
     if (error.response && error.response.data) {
       msg = error.response.data.message || error.response.data.error || msg;
     } else if (error.message) {
       msg = error.message;
     }
 
-    // Show SweetAlert2
+    
     Swal.fire({
       icon: "error",
       title: "Oops!",
