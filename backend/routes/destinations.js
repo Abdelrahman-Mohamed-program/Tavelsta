@@ -1,8 +1,7 @@
 const  router  = require("express").Router()
 
-const {index,create, edit,destroy,show} = require("../controllers/destinations.controller")
+const {index,create, update,destroy,show} = require("../controllers/destinations.controller")
 const adminAuth = require("../middlewares/adminAuth")
-const jsonCheck = require("../middlewares/json")
 router.use((req,res,next)=>{
 console.log("request came to destinations route");
     next()
@@ -11,13 +10,12 @@ router.get("/",index)
 
 router.get("/:id",show)
 
-router.delete("/delete/:id",adminAuth,destroy);
+router.delete("/:id",adminAuth,destroy);
 
-router.use(jsonCheck);
 
 router.post("/add",adminAuth,create)
 
-router.put("/update/:id",edit)
+router.put("/update/:id",update)
 
 
 module.exports = router

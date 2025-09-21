@@ -29,7 +29,7 @@ if (req.method=="OPTIONS") {
   
   next()
 })
-
+app.use(jsonCheck);
 app.use(express.json());
 app.use(tokenAuth);
 
