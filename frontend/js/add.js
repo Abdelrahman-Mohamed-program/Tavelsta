@@ -18,7 +18,7 @@ submit.addEventListener("click",async (event) => {
     try {
         const token = localStorage.getItem('token');
         const { data } = await axios.post(
-            `http://localhost:2005/api/v1/destinations/add`,
+            `http://localhost:2005/api/v1/destinations`,
             object,
             { headers: { Authorization: `Bearer ${token}` } }
         );

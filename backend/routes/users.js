@@ -26,7 +26,7 @@ router.post("/login",loginCheck,login)
 router.patch("/me/changePassword",changePassword)
 
 //update user data (email and username)
-router.put("/me/update",update)
+router.put("/me",update)
 //block and unblock user
 router.patch("/block/:id",adminAuth,blockUser)
 router.patch("/unblock/:id",adminAuth,unblockUser)

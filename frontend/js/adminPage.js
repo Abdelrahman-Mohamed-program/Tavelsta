@@ -147,7 +147,7 @@ function displayDestinations(){
         var id = tableRow.getElementsByTagName("td")[0].innerText;
         console.log(id);
         try {
-             const {data} = await axios.delete(`http://localhost:2005/api/v1/destinations/delete/${id}`,{ headers: { Authorization: `Bearer ${token}` }})
+             const {data} = await axios.delete(`http://localhost:2005/api/v1/destinations/${id}`,{ headers: { Authorization: `Bearer ${token}` }})
                 console.log(data);
                  Destinations = Destinations.filter(dest => dest._id != id);
         } catch (error) {

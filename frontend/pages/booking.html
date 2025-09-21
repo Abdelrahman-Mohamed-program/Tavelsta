@@ -206,7 +206,7 @@ if (!token) {
             { persons, nights, totalPrice }
         };
 
-        axios.post("http://localhost:2005/api/v1/bookings/add",newBooking,{
+        axios.post("http://localhost:2005/api/v1/bookings",newBooking,{
             headers: token ? { Authorization: `Bearer ${token}` } : {}
             }).then(res=>{
             console.log(res);

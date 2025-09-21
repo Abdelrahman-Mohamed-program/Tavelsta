@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-      await axios.put("http://localhost:2005/api/v1/users/me/update", { email, username }, {
+      await axios.put("http://localhost:2005/api/v1/users/me", { email, username }, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(
         res =>{
@@ -208,7 +208,7 @@ function renderTrips(containerId, trips, allowReview) {
          });
         }
         try {
-        const res =  await axios.put(`http://localhost:2005/api/v1/destinations/update/${trip.destination._id}`, { reviews:review }, {
+        const res =  await axios.put(`http://localhost:2005/api/v1/destinations/${trip.destination._id}`, { reviews:review }, {
             headers: { Authorization: `Bearer ${token}` }
           });
  Swal.fire({
@@ -248,7 +248,7 @@ function renderTrips(containerId, trips, allowReview) {
       cancelBtn.addEventListener("click", async () => {
         if (!confirm("Are you sure you want to cancel this booking?")) return;
         try {
-         const res = await axios.delete(`http://localhost:2005/api/v1/bookings/delete/${trip._id}`, {
+         const res = await axios.delete(`http://localhost:2005/api/v1/bookings/${trip._id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           console.log(res);

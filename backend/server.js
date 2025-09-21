@@ -7,7 +7,7 @@ const express = require("express"),
 
 const tokenAuth = require("./middlewares/tokenAuth")  
 const {notFound,errorHandler} = require("./middlewares/errorHandle")
-const jsonCheck = require("./middlewares/json")
+
 //database config:
 const {dbConnection} = require("./config/db")    
 dbConnection();
@@ -29,7 +29,7 @@ if (req.method=="OPTIONS") {
   
   next()
 })
-app.use(jsonCheck);
+
 app.use(express.json());
 app.use(tokenAuth);
 
