@@ -6,9 +6,9 @@ console.log('Received ID:', id);
 let destinationData = {}
 
 
-if (!token) {
-  window.location.href = "login.html"; 
-} 
+// if (!token) {
+//   window.location.href = "login.html"; 
+// } 
 
 document.addEventListener("DOMContentLoaded", () => {
 
