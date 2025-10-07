@@ -99,6 +99,7 @@ function onAddDestination(){
     Destinations.push(object);
 
 }
+//change
 function onDeleteDestination(element){
         var tableRow = element.parentNode.parentNode;
         var id = tableRow.getElementsByTagName("td")[0].innerText;
