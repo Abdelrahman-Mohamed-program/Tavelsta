@@ -100,6 +100,7 @@ function calc(){
 const totalSales = Bookings.reduce((sum, booking) => sum + booking.details.totalPrice, 0);
 document.getElementById("total-money").innerText = `$${totalSales.toLocaleString()}`;
 
+//change
 // Total Bookings
 document.getElementById("total-bookings").innerText = Bookings.length.toLocaleString();
 
