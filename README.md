@@ -6,7 +6,7 @@ This project was built as part of a team project where I was the team leader and
 
 ---
 
-## 🚀 Features
+## Features
 
 ### 👤 User Features
 - Browse travel destinations  
@@ -21,9 +21,9 @@ This project was built as part of a team project where I was the team leader and
 
 ---
 
-## 🧑‍💻 My Contributions
+## My Contributions
 
-### 🔹 Backend (fully implemented by me)
+### Backend (fully implemented by me)
 - Designed and built RESTful API endpoints  
 - Implemented JWT authentication (Access Tokens)  
 - Role-based authorization (Admin/User)  
@@ -34,21 +34,21 @@ This project was built as part of a team project where I was the team leader and
 - Mongoose validation (match, enum, custom validators)  
 - Custom error handling (including Mongoose validation errors)  
 
-### 🔹 Frontend
+### Frontend
 - Built the **All Destinations page**  
 - Integrated APIs across the application  
 - Handled authentication state and admin dashboard behavior  
 
 ---
 
-## 🏗 Project Structure
+## Project Structure
 
 /frontend   → React frontend  
 /backend    → Node.js + Express backend  
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React  
@@ -62,7 +62,7 @@ This project was built as part of a team project where I was the team leader and
 
 ---
 
-## 🔐 Authentication & Authorization
+##  Authentication & Authorization
 
 - JWT-based authentication (Access Tokens)  
 - Role-based access control (Admin/User)  
@@ -70,7 +70,7 @@ This project was built as part of a team project where I was the team leader and
 
 ---
 
-## 🧪 Validation & Error Handling
+##  Validation & Error Handling
 
 - Schema validation using Mongoose  
 - Custom validators  
@@ -88,7 +88,7 @@ This project was built as part of a team project where I was the team leader and
 
 ---
 
-## ⚠️ Notes & Improvements
+##  Notes & Improvements
 
 This was my first backend project, and I learned most of the concepts through self-learning and hands-on implementation.
 
@@ -116,14 +116,14 @@ npm start
 
 ---
 
-## 📌 Status
+## Status
 
 Completed as a learning project.  
 Future improvements may include deployment and integration with real data sources.
 
 ---
 
-## 🤝 Team Project
+## Team Project
 
 This project was developed as part of a team collaboration.  
 Each member contributed to different frontend parts, while I focused on backend development and leading the team.

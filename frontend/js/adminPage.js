@@ -188,6 +188,7 @@ function displayBookings(){
         tableRowItem += '<td>' + booking._id + '</td>';
         tableRowItem += '<td>' + booking.user.email + '</td>';
         tableRowItem += '<td>' + booking.destination?.title + '</td>';
+        // tableRowItem += '<td>' + booking. + '</td>';
         tableRowItem += '</tr>';
         htmlTableParent.innerHTML += tableRowItem;
     });
