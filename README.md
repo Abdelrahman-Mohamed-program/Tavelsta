@@ -1,4 +1,4 @@
-# 🌍 Travel System (Full-Stack MERN Project)
+# 🌍 Travel System (Full-Stack Project)
 
 A full-stack travel platform that allows users to explore destinations, make bookings, and manage their profiles, with an admin dashboard for managing users and tracking activity.
 
@@ -8,13 +8,13 @@ This project was built as part of a team project where I was the team leader and
 
 ## Features
 
-### 👤 User Features
+### User Features
 - Browse travel destinations  
 - Book trips  
 - Create and manage user profile  
 - Update personal data and password  
 
-### 🛠 Admin Features
+### Admin Features
 - View and manage users  
 - Block/unblock users  
 - Track most booked destinations  
