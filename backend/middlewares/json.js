@@ -1,5 +1,5 @@
 const jsonCheck = (req, res, next) => {
-  if (!req.is("application/json")) {
+  if (req.body&&!req.is("application/json")) {
     res.set("Accept", "application/json");
     return res.status(400).json({
       error: "Bad Request",

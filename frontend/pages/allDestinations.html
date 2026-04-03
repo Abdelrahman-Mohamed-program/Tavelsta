@@ -25,13 +25,13 @@
   </div>
   <ul class="nav__links" id="nav-links">
     <li><a href="home.html">HOME</a></li>
-    <li><a href="all Destinations.html">DESTINATIONS</a></li>
+    <li><a href="allDestinations.html">DESTINATIONS</a></li>
     <li><a href="contact.html">CONTACT</a></li>
         <li></li>
   </ul>
     <div class="nav__btns">
   <button id="change-button" class="btn">
-    <a id="change-link" href="login and signup.html">
+    <a id="change-link" href="loginAndSignup.html">
       Book Now!
     </a>
   </button>
@@ -50,12 +50,12 @@
  const changeButton = document.getElementById("change-button");
  const changeLink = document.getElementById("change-link");
 
-  if (token) {
-    changeLink.innerHTML = '<i class="fa-solid fa-user"></i>';  
-    changeLink.href = "profile.html";
-  }else{
-  window.location.href = "login and signup.html"; 
-  }
+//   if (token) {
+//     changeLink.innerHTML = '<i class="fa-solid fa-user"></i>';  
+//     changeLink.href = "profile.html";
+//   }else{
+//   window.location.href = "loginAndSignup.html"; 
+//   }
 
     const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
@@ -76,9 +76,7 @@ navLinks.addEventListener("click", (e) => {
 <script>
 async function loadDestinations() {
   try {
-    const res = await axios.get("http://localhost:2005/api/v1/destinations/",{
-    headers: token ? { Authorization: `Bearer ${token}` } : {}
-  });
+    const res = await axios.get("http://localhost:2005/api/v1/destinations/");
     const destinations =  res.data.destinations;
     const container = document.getElementById("cards-container");
     container.innerHTML = "";
@@ -134,8 +132,8 @@ function goToDestination(id) {
     return;
   }
   Swal.fire({
-    title: "💡 Hold on, traveler!",
-    text: "You need to log in first to enjoy our booking services 🚀✨",
+    title: "Hold on, traveler!",
+    text: "You need to log in first to enjoy our booking services ",
     icon: "info",
     showCancelButton: true,
     confirmButtonText: "Login Now",
@@ -152,7 +150,7 @@ function goToDestination(id) {
     }
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = "login and signup.html";
+      window.location.href = "loginAndSignup.html";
     }
   });
 

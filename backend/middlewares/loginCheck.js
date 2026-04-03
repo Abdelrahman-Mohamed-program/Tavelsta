@@ -10,20 +10,27 @@ const loginCheck = async (req, res, next) => {
       });
     }
 
-    if (!req.body.password) {
+    if (!req.body?.password) {
       return res.status(400).json({
         error: "Bad request",
         message: "password IS REQUIRED",
       });
     }
-
+    // console.log(req.body.password);
+    
     const user = await userModel
       .findOne({ email: req.body.email })
       .select("+password");
+
+      if (!user) {
+        return res.status(400).json({
+          message:"user not found"
+        })      }
     const passwordCheck = await bcrypt.compare(
       req.body.password,
       user.password
     );
+// console.log("Came");
 
     if (!user || user.blocked || !passwordCheck) {
       return res.status(401).json({

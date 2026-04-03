@@ -28,6 +28,7 @@ const signup = async (req, res, next) => {
 
 const login = (req, res, next) => {
   try {
+    
     const accessToken = genearteToken(req.user);
     res.status(200).json({
       accessToken,

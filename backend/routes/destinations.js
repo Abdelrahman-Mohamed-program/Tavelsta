@@ -8,11 +8,17 @@ const {
   show,
 } = require("../controllers/destinations.controller");
 const adminAuth = require("../middlewares/adminAuth");
+const tokenAuth = require("../middlewares/tokenAuth");
+
 router.use((req, res, next) => {
   console.log("request came to destinations route");
   next();
 });
+
+
 router.get("/", index);
+
+router.use(tokenAuth);
 
 router.get("/:id", show);
 

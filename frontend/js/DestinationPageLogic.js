@@ -6,11 +6,24 @@ console.log('Received ID:', id);
 let destinationData = {}
 
 
-// if (!token) {
-//   window.location.href = "login.html"; 
-// } 
 
 document.addEventListener("DOMContentLoaded", () => {
+if (!token) {
+  
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "You need to login first",
+      confirmButtonText: "Okay",
+      background: "#fff",
+      confirmButtonColor: "#d33",
+    });
+    setTimeout(() => {
+      window.location.href = "loginAndSignup.html"
+    }, 2000);
+
+    return;
+} 
 
 axios.get(`http://localhost:2005/api/v1/destinations/${id}`,{
     headers: token ? { Authorization: `Bearer ${token}` } : {}
